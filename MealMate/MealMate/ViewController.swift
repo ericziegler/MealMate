@@ -2,17 +2,18 @@
 //  ViewController.swift
 //  MealMate
 //
-//  Created by Eric Ziegler on 11/6/19.
-//  Copyright © 2019 Eric Ziegler. All rights reserved.
-//
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
+
+    @IBOutlet var gradient: GradientView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let x = UIColor(intRed: 44, green: 34, blue: 173)
+        let y = UIColor(intRed: 180, green: 105, blue: 209)
+        gradient.updateGradientWith(firstColor: x, secondColor: y)
     }
 
 

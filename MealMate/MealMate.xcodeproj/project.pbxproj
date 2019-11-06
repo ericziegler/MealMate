@@ -12,6 +12,11 @@
 		789061B6237306A3000DFC9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 789061B4237306A3000DFC9B /* Main.storyboard */; };
 		789061B8237306A4000DFC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 789061B7237306A4000DFC9B /* Assets.xcassets */; };
 		789061BB237306A4000DFC9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 789061B9237306A4000DFC9B /* LaunchScreen.storyboard */; };
+		789061C5237313D9000DFC9B /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789061C4237313D9000DFC9B /* UIKitExtensions.swift */; };
+		789061C7237313E9000DFC9B /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789061C6237313E9000DFC9B /* FoundationExtensions.swift */; };
+		789061CC237314B6000DFC9B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789061CB237314B6000DFC9B /* BaseNavigationController.swift */; };
+		789061CE237314C4000DFC9B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789061CD237314C4000DFC9B /* BaseViewController.swift */; };
+		789061D0237314D0000DFC9B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789061CF237314D0000DFC9B /* BaseTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		789061B7237306A4000DFC9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		789061BA237306A4000DFC9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		789061BC237306A4000DFC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		789061C4237313D9000DFC9B /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
+		789061C6237313E9000DFC9B /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
+		789061CB237314B6000DFC9B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		789061CD237314C4000DFC9B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		789061CF237314D0000DFC9B /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +64,75 @@
 		789061AF237306A3000DFC9B /* MealMate */ = {
 			isa = PBXGroup;
 			children = (
-				789061B0237306A3000DFC9B /* AppDelegate.swift */,
-				789061B2237306A3000DFC9B /* ViewController.swift */,
-				789061B4237306A3000DFC9B /* Main.storyboard */,
+				789061D22373153B000DFC9B /* AppDelegate */,
+				789061CA237314A5000DFC9B /* ViewControllers */,
+				789061C92373149E000DFC9B /* Views */,
+				789061C823731497000DFC9B /* Data */,
+				789061C323731366000DFC9B /* Extensions */,
+				789061C223731353000DFC9B /* Resources */,
+			);
+			path = MealMate;
+			sourceTree = "<group>";
+		};
+		789061C223731353000DFC9B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				789061B7237306A4000DFC9B /* Assets.xcassets */,
 				789061B9237306A4000DFC9B /* LaunchScreen.storyboard */,
 				789061BC237306A4000DFC9B /* Info.plist */,
 			);
-			path = MealMate;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		789061C323731366000DFC9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				789061C4237313D9000DFC9B /* UIKitExtensions.swift */,
+				789061C6237313E9000DFC9B /* FoundationExtensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		789061C823731497000DFC9B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		789061C92373149E000DFC9B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		789061CA237314A5000DFC9B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				789061D12373152C000DFC9B /* BaseControllers */,
+				789061B2237306A3000DFC9B /* ViewController.swift */,
+				789061B4237306A3000DFC9B /* Main.storyboard */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		789061D12373152C000DFC9B /* BaseControllers */ = {
+			isa = PBXGroup;
+			children = (
+				789061CB237314B6000DFC9B /* BaseNavigationController.swift */,
+				789061CD237314C4000DFC9B /* BaseViewController.swift */,
+				789061CF237314D0000DFC9B /* BaseTableViewController.swift */,
+			);
+			name = BaseControllers;
+			sourceTree = "<group>";
+		};
+		789061D22373153B000DFC9B /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				789061B0237306A3000DFC9B /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +206,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				789061C7237313E9000DFC9B /* FoundationExtensions.swift in Sources */,
 				789061B3237306A3000DFC9B /* ViewController.swift in Sources */,
 				789061B1237306A3000DFC9B /* AppDelegate.swift in Sources */,
+				789061D0237314D0000DFC9B /* BaseTableViewController.swift in Sources */,
+				789061CC237314B6000DFC9B /* BaseNavigationController.swift in Sources */,
+				789061C5237313D9000DFC9B /* UIKitExtensions.swift in Sources */,
+				789061CE237314C4000DFC9B /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zigabytes.MealMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,7 +386,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zigabytes.MealMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
