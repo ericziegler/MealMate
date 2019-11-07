@@ -9,11 +9,11 @@ import UIKit
 func applyApplicationAppearanceProperties() {
     UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.applicationFontOfSize(17)], for: .normal)
     UINavigationBar.appearance().tintColor = UIColor.white
-    UINavigationBar.appearance().barTintColor = UIColor.appMain
+    UINavigationBar.appearance().barTintColor = UIColor.gray
 }
 
 func navTitleTextAttributes() -> [NSAttributedString.Key : Any] {
-    return [NSAttributedString.Key.font : UIFont.applicationBoldFontOfSize(21.0), .foregroundColor : UIColor.navAccent]
+    return [NSAttributedString.Key.font : UIFont.applicationBoldFontOfSize(21.0), .foregroundColor : UIColor.white]
 }
 
 // MARK: - UIImage
@@ -170,14 +170,6 @@ extension UIColor {
 
     class var appMain: UIColor {
         return UIColor(hex: 0x1bce4a)
-    }
-
-    class var navAccent: UIColor {
-        return UIColor.white
-    }
-
-    class var accent: UIColor {
-        return UIColor(hex: 0x000000)
     }
 
     class var appDark: UIColor {

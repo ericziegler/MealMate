@@ -6,6 +6,10 @@ import UIKit
 
 class BaseTableViewController: UITableViewController {
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.titleTextAttributes = navTitleTextAttributes()
