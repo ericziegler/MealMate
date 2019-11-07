@@ -17,36 +17,9 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTW-ak-Hde" customClass="GradientView" customModule="MealMate" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gj-Mo-eV2">
-                                        <rect key="frame" x="23" y="52" width="75.5" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="1gj-Mo-eV2" firstAttribute="leading" secondItem="cTW-ak-Hde" secondAttribute="leading" constant="23" id="AM9-V8-zAQ"/>
-                                    <constraint firstItem="1gj-Mo-eV2" firstAttribute="top" secondItem="cTW-ak-Hde" secondAttribute="top" constant="52" id="SNp-f5-482"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="cTW-ak-Hde" secondAttribute="bottom" id="Pyh-3L-qpH"/>
-                            <constraint firstItem="cTW-ak-Hde" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hFI-RS-aRk"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cTW-ak-Hde" secondAttribute="trailing" id="kbj-w7-kAk"/>
-                            <constraint firstItem="cTW-ak-Hde" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-44" id="rW7-lU-1zI"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="gradient" destination="cTW-ak-Hde" id="kdj-5j-xIb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

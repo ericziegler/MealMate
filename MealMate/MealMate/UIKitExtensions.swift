@@ -9,7 +9,7 @@ import UIKit
 func applyApplicationAppearanceProperties() {
     UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.applicationFontOfSize(17)], for: .normal)
     UINavigationBar.appearance().tintColor = UIColor.white
-    UINavigationBar.appearance().barTintColor = UIColor.main
+    UINavigationBar.appearance().barTintColor = UIColor.appMain
 }
 
 func navTitleTextAttributes() -> [NSAttributedString.Key : Any] {
@@ -85,12 +85,6 @@ class BoldLabel: ApplicationStyleLabel {
     }
 }
 
-class LightLabel: ApplicationStyleLabel {
-    override func commonInit() {
-        self.font = UIFont.applicationLightFontOfSize(self.font.pointSize)
-    }
-}
-
 // MARK: - UIButton
 
 class ApplicationStyleButton : UIButton {
@@ -127,28 +121,16 @@ class BoldButton: ApplicationStyleButton {
     }
 }
 
-class LightButton: ApplicationStyleButton {
-    override func commonInit() {
-        if let font = self.titleLabel?.font {
-            self.titleLabel?.font = UIFont.applicationLightFontOfSize(font.pointSize)
-        }
-    }
-}
-
 // MARK: - UIFont
 
 extension UIFont {
 
     class func applicationFontOfSize(_ size: CGFloat) -> UIFont {
-        return UIFont(name: "HelveticaNeue", size: size)!
+        return UIFont(name: "DevanagariSangamMN", size: size)!
     }
 
     class func applicationBoldFontOfSize(_ size: CGFloat) -> UIFont {
-        return UIFont(name: "HelveticaNeue-Bold", size: size)!
-    }
-
-    class func applicationLightFontOfSize(_ size: CGFloat) -> UIFont {
-        return UIFont(name: "HelveticaNeue-Light", size: size)!
+        return UIFont(name: "DevanagariSangamMN-Bold", size: size)!
     }
 
     class func debugListFonts() {
@@ -186,8 +168,8 @@ extension UIColor {
         }
     }
 
-    class var main: UIColor {
-        return UIColor(hex: 0xc83637)
+    class var appMain: UIColor {
+        return UIColor(hex: 0x1bce4a)
     }
 
     class var navAccent: UIColor {
@@ -198,12 +180,20 @@ extension UIColor {
         return UIColor(hex: 0x000000)
     }
 
-    class var lightText: UIColor {
-        return UIColor(hex: 0xB1BDD8)
+    class var appDark: UIColor {
+        return UIColor(hex: 0x121212)
     }
 
-    class var tableSectionColor: UIColor {
-        return UIColor(hex: 0x0C2F6F)
+    class var appLightGray: UIColor {
+        return UIColor(hex: 0xf3f7fc)
+    }
+
+    class var appGray: UIColor {
+        return UIColor(hex: 0xe9ecef)
+    }
+
+    class var appDarkGray: UIColor {
+        return UIColor(hex: 0x9da4a9)
     }
 
 }
