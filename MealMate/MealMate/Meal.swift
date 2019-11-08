@@ -8,9 +8,11 @@
 
 // MARK: - Constants
 
+let MealIdCacheKey = "MealIdCacheKey"
 let MealNameCacheKey = "MealNameCacheKey"
 let MealCategoryCacheKey = "MealCategoryCacheKey"
 let MealIngredientsCacheKey = "MealIngredientsCacheKey"
+let MealNeededCacheKey = "MealNeededCacheKey"
 
 // MARK: - Enums
 
@@ -42,25 +44,25 @@ class Meal: NSObject, NSCoding {
 
     // MARK: - Constants
 
+    var identifier = ""
     var name = ""
     var category = MealCategory.misc
-    var ingredients = [Ingredient]()
-    var isNeeded: Bool {
-        get {
-            var result = false
-            for curIngredient in ingredients {
-                if curIngredient.isNeeded == true {
-                    result = true
-                    break
-                }
-            }
-            return result
-        }
+    private var ingredients = [Ingredient]()
+    var isNeeded = false
+
+    // MARK: - Init
+
+    override init() {
+        super.init()
+        identifier = UUID().uuidString
     }
 
     // MARK: - NSCoding
 
     required init?(coder decoder: NSCoder) {
+        if let mealIdentifier = decoder.decodeObject(forKey: MealIdCacheKey) as? String {
+            identifier = mealIdentifier
+        }
         if let mealName = decoder.decodeObject(forKey: MealNameCacheKey) as? String {
             name = mealName
         }
@@ -70,22 +72,32 @@ class Meal: NSObject, NSCoding {
         if let ingredientsData = decoder.decodeObject(forKey: MealIngredientsCacheKey) as? Data, let mealIngredients = NSKeyedUnarchiver.unarchiveObject(with: ingredientsData) as? [Ingredient] {
             ingredients = mealIngredients
         }
+        isNeeded = decoder.decodeBool(forKey: MealNeededCacheKey)
     }
 
     public func encode(with coder: NSCoder) {
+        coder.encode(identifier, forKey: MealIdCacheKey)
         coder.encode(name, forKey: MealNameCacheKey)
         coder.encode(category.rawValue, forKey: MealCategoryCacheKey)
         let ingredientsData = NSKeyedArchiver.archivedData(withRootObject: ingredients)
         coder.encode(ingredientsData, forKey: MealIngredientsCacheKey)
+        coder.encode(isNeeded, forKey: MealNeededCacheKey)
     }
 
-    // MARK: - Need Handling
+    // MARK: - Adding / Removing
 
-    func toggleNeeded(needed: Bool) {
-        for curIngredient in ingredients {
-            curIngredient.isNeeded = needed
-        }
+    func addIngredient(_ ingredient: Ingredient) {
+        ingredients.append(ingredient)
         MealList.shared.saveMeals()
+    }
+
+    func removeIngredientAt(index: Int) {
+        ingredients.remove(at: index)
+        MealList.shared.saveMeals()
+    }
+
+    func ingredient(at index: Int) ->Ingredient {
+        return ingredients[index]
     }
 
 }
