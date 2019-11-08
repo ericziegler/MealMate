@@ -8,6 +8,11 @@
 
 import UIKit
 
+// MARK: - Constants
+
+let MealControllerId = "MealControllerId"
+let MealHeaderHeight: CGFloat = 80
+
 class MealListController: BaseViewController {
 
     // MARK: - Properties
@@ -17,12 +22,19 @@ class MealListController: BaseViewController {
     @IBOutlet var mealTable: UITableView!
     // TODO: EZ - Add no data view
     //@IBOutlet var noDataView: UIView!
+    var mealList = MealList.shared
 
     // MARK: - Init
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkForMeals()
+    }
+
 
     // MARK: - Actions
 
@@ -34,6 +46,23 @@ class MealListController: BaseViewController {
 
     }
 
+    // MARK: - Layout
+
+    private func checkForMeals() {
+        mealList.loadMeals()
+        if mealList.count > 0 {
+            // TODO: EZ = Add
+            //noData.isHidden = true
+            mealTable.reloadData()
+            shareButton.isEnabled = true
+        } else {
+            // TODO: EZ - Add
+//            self.view.bringSubviewToFront(noMealsView)
+//            noMealsView.isHidden = false
+            shareButton.isEnabled = false
+        }
+    }
+
 }
 
 extension MealListController: UITableViewDataSource, UITableViewDelegate {
@@ -43,23 +72,74 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        let category = MealCategory(rawValue: section)!
+        return mealList.mealsForCategory(category).count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: MealCellId, for: indexPath) as! MealCell
+        let category = MealCategory(rawValue: indexPath.section)!
+        let meal = mealList.mealsForCategory(category)[indexPath.row]
+        cell.delegate = self
+        cell.layoutFor(meal: meal)
+
+        return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0
+        return MealCellHeight
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let category = MealCategory(rawValue: section)!
+        if mealList.mealsForCategory(category).count > 0 {
+            return MealHeaderHeight
+        }
         return 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
+        let category = MealCategory(rawValue: section)!
+
+        let bg = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
+        bg.backgroundColor = UIColor.appLightGray
+
+        let icon = UIImageView(image: UIImage(named: category.displayName)?.maskedImageWithColor(UIColor.appDark))
+        bg.addSubview(icon)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        var leadingConstraint = NSLayoutConstraint(item: icon, attribute: .leading, relatedBy: .equal, toItem: bg, attribute: .leading, multiplier: 1, constant: 15)
+        var centerConstraint = NSLayoutConstraint(item: icon, attribute: .centerY, relatedBy: .equal, toItem: bg, attribute: .centerY, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: icon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+        let heightConstraint = NSLayoutConstraint(item: icon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+        bg.addConstraints([leadingConstraint, centerConstraint, widthConstraint, heightConstraint])
+
+        let nameLabel = BoldLabel(frame: .zero)
+        nameLabel.text = category.displayName
+        nameLabel.textColor = UIColor.appDark
+        nameLabel.backgroundColor = UIColor.clear
+        nameLabel.font = UIFont.applicationBoldFontOfSize(26)
+        bg.addSubview(nameLabel)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        leadingConstraint = NSLayoutConstraint(item: nameLabel, attribute: .leading, relatedBy: .equal, toItem: icon, attribute: .trailing, multiplier: 1, constant: 10)
+        centerConstraint = NSLayoutConstraint(item: nameLabel, attribute: .centerY, relatedBy: .equal, toItem: icon, attribute: .centerY, multiplier: 1, constant: 0)
+        bg.addConstraints([leadingConstraint, centerConstraint])
+
+        return bg
+    }
+
+}
+
+extension MealListController: MealCellDelegate {
+
+    func checkWasToggled(needed: Bool, mealIdentifier: String) {
+        for i in 0..<mealList.count {
+            let curMeal = mealList.meal(at: i)
+            if curMeal.identifier == mealIdentifier {
+                curMeal.isNeeded = needed
+                mealList.saveMeals()
+                break
+            }
+        }
     }
 
 }

@@ -32,7 +32,7 @@ enum MealCategory: Int {
             case .dinner:
                 return "Dinner"
             case .misc:
-                return "Misc."
+                return "General"
             }
         }
     }

@@ -17,6 +17,11 @@ class MealList {
     // MARK: - Properties
 
     private var meals = [Meal]()
+    var count: Int {
+        get {
+            return meals.count
+        }
+    }
 
     // MARK: - Init
 
@@ -125,6 +130,33 @@ extension MealList {
 //        addMeal(meal)
 //
 //        meal = Meal()
+//        meal.name = "Steak"
+//        meal.category = .dinner
+//
+//        ingredient = Ingredient()
+//        ingredient.name = "Steak"
+//        ingredient.quantity = 1
+//        ingredient.isNeeded = true
+//        ingredient.mealId = meal.identifier
+//        meal.addIngredient(ingredient)
+//
+//        ingredient = Ingredient()
+//        ingredient.name = "Baked potatoes"
+//        ingredient.quantity = 2
+//        ingredient.isNeeded = false
+//        ingredient.mealId = meal.identifier
+//        meal.addIngredient(ingredient)
+//
+//        ingredient = Ingredient()
+//        ingredient.name = "Steak seasoning"
+//        ingredient.quantity = 1
+//        ingredient.isNeeded = false
+//        ingredient.mealId = meal.identifier
+//        meal.addIngredient(ingredient)
+//
+//        addMeal(meal)
+//
+//        meal = Meal()
 //        meal.name = "French toast"
 //        meal.category = .breakfast
 //        meal.isNeeded = true
@@ -207,5 +239,4 @@ extension MealList {
 //            print("\n")
 //        }
 //    }
-//
 }

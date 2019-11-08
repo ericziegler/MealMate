@@ -20,6 +20,7 @@
 		78998AD923747A6100CA7584 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78998AD823747A6100CA7584 /* Ingredient.swift */; };
 		78998ADD23747A9700CA7584 /* MealList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78998ADC23747A9700CA7584 /* MealList.swift */; };
 		78998ADF23747A9F00CA7584 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78998ADE23747A9F00CA7584 /* Meal.swift */; };
+		78EEC1662375A41500730AF2 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEC1652375A41500730AF2 /* MealCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		78998AD823747A6100CA7584 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		78998ADC23747A9700CA7584 /* MealList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealList.swift; sourceTree = "<group>"; };
 		78998ADE23747A9F00CA7584 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		78EEC1652375A41500730AF2 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		789061C92373149E000DFC9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				78EEC1652375A41500730AF2 /* MealCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				78998ADD23747A9700CA7584 /* MealList.swift in Sources */,
 				789061B1237306A3000DFC9B /* AppDelegate.swift in Sources */,
 				78998ADF23747A9F00CA7584 /* Meal.swift in Sources */,
+				78EEC1662375A41500730AF2 /* MealCell.swift in Sources */,
 				789061D0237314D0000DFC9B /* BaseTableViewController.swift in Sources */,
 				78998AD923747A6100CA7584 /* Ingredient.swift in Sources */,
 				789061CC237314B6000DFC9B /* BaseNavigationController.swift in Sources */,
