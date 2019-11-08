@@ -49,6 +49,11 @@ class Meal: NSObject, NSCoding {
     var category = MealCategory.misc
     private var ingredients = [Ingredient]()
     var isNeeded = false
+    var ingredientCount: Int {
+        get {
+            return ingredients.count
+        }
+    }
 
     // MARK: - Init
 
