@@ -17,18 +17,14 @@ class MealController: BaseViewController {
     // MARK: - Properties
 
     @IBOutlet var nameField: StyledTextField!
-    @IBOutlet var categorySegmentedControl: UISegmentedControl!
+    @IBOutlet var categorySegments: UISegmentedControl!
     @IBOutlet var ingredientTable: UITableView!
+    @IBOutlet var addUpdateButton: BoldButton!
     var meal: Meal?
     var mealId = ""
     var mealName = ""
-    var mealCategory = MealCategory.general
+    var mealCategory = MealCategory.breakfast
     var ingredients = [Ingredient]()
-    private var isNewMeal: Bool {
-        get {
-            return meal == nil
-        }
-    }
 
     // MARK: - Init
 
@@ -44,13 +40,17 @@ class MealController: BaseViewController {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
+        categorySegments.ensureiOS12Style()
         setupMeal()
+        if meal != nil {
+            addUpdateButton.setTitle("Update", for: .normal)
+        }
     }
 
     // MARK: - Actions
 
-    @IBAction func mealTypeChanged(_ sender: AnyObject) {
-        switch categorySegmentedControl.selectedSegmentIndex {
+    @IBAction func mealCategoryChanged(_ sender: AnyObject) {
+        switch categorySegments.selectedSegmentIndex {
         case 0:
             mealCategory = .breakfast
         case 1:
@@ -112,7 +112,9 @@ class MealController: BaseViewController {
         if let meal = self.meal {
             mealId = meal.identifier
             mealName = meal.name
+            nameField.text = mealName
             mealCategory = meal.category
+            categorySegments.selectedSegmentIndex = mealCategory.rawValue
             ingredients.removeAll()
             for i in 0..<meal.ingredientCount {
                 let curIngredient = meal.ingredient(at: i)
@@ -126,10 +128,10 @@ class MealController: BaseViewController {
             meal.identifier = mealId
             meal.name = mealName
             meal.category = mealCategory
-            ingredients.removeAll()
-            for i in 0..<meal.ingredientCount {
-                let curIngredient = meal.ingredient(at: i)
-                ingredients.append(curIngredient)
+            meal.removeAllIngredients()
+            for i in 0..<ingredients.count {
+                let curIngredient = ingredients[i]
+                meal.addIngredient(curIngredient)
             }
         } else {
             let meal = Meal()
@@ -144,4 +146,44 @@ class MealController: BaseViewController {
         MealList.shared.saveMeals()
     }
     
+}
+
+extension MealController: UITextFieldDelegate {
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        mealName = (textField.text) ?? ""
+    }
+
+}
+
+extension MealController: UITableViewDataSource, UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ingredients.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return IngredientCellHeight
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let ingredient = ingredients[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: IngredientCellId, for: indexPath) as! IngredientCell
+        cell.layoutFor(ingredient: ingredient)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let ingredient = ingredients[indexPath.row]
+        ingredient.isNeeded = !ingredient.isNeeded
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            ingredients.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
 }

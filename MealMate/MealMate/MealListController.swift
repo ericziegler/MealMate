@@ -91,6 +91,29 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
         return MealCellHeight
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = MealCategory(rawValue: indexPath.section)!
+        let meal = mealList.mealsForCategory(category)[indexPath.row]
+        let controller = MealController.createControllerFor(meal: meal)
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true, completion: nil)
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let category = MealCategory(rawValue: indexPath.section)!
+            let categoryMeals = mealList.mealsForCategory(category)
+            let meal = categoryMeals[indexPath.row]
+            for i in 0..<mealList.count {
+                if mealList.meal(at: i).identifier == meal.identifier {
+                    mealList.removeMealAt(index: i)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    break
+                }
+            }
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let category = MealCategory(rawValue: section)!
         if mealList.mealsForCategory(category).count > 0 {

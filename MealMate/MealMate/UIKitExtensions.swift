@@ -249,7 +249,7 @@ class StyledTextField : UITextField {
         self.styleBorderWithColor()
     }
 
-    func styleBorderWithColor(color: UIColor = UIColor(hex: 0xdddddd), cornerRadius: CGFloat = 10, borderWidth: CGFloat = 1.5) {
+    func styleBorderWithColor(color: UIColor = UIColor(hex: 0xbbbbbb), cornerRadius: CGFloat = 10, borderWidth: CGFloat = 1.5) {
         self.layer.borderColor = color.cgColor
         self.layer.cornerRadius = cornerRadius
         self.layer.borderWidth = borderWidth
@@ -271,7 +271,7 @@ class StyledTextView : UITextView {
         self.styleBorderWithColor()
     }
 
-    func styleBorderWithColor(color: UIColor = UIColor(hex: 0xdddddd), cornerRadius: CGFloat = 10, borderWidth: CGFloat = 1.5) {
+    func styleBorderWithColor(color: UIColor = UIColor(hex: 0xbbbbbb), cornerRadius: CGFloat = 10, borderWidth: CGFloat = 1.5) {
         self.layer.borderColor = color.cgColor
         self.layer.cornerRadius = cornerRadius
         self.layer.borderWidth = borderWidth
@@ -292,7 +292,8 @@ extension UISegmentedControl {
             let highlightedBackgroundColor: UIColor = tintColor.withAlphaComponent(0.2)
             setBackgroundImage(highlightedBackgroundColor.image(), for: .highlighted, barMetrics: .default)
             setBackgroundImage(tintColorImage, for: [.highlighted, .selected], barMetrics: .default)
-            setTitleTextAttributes([.foregroundColor: tintColor!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular)], for: .normal)
+            setTitleTextAttributes([.foregroundColor: UIColor.appDarkGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold)], for: .normal)
+            setTitleTextAttributes([.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold)], for: .selected)
             setDividerImage(tintColorImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
             layer.borderWidth = 1
             layer.borderColor = tintColor.cgColor

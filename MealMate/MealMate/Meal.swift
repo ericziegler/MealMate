@@ -46,7 +46,7 @@ class Meal: NSObject, NSCoding {
 
     var identifier = ""
     var name = ""
-    var category = MealCategory.general
+    var category = MealCategory.breakfast
     private var ingredients = [Ingredient]()
     var isNeeded = false
     var ingredientCount: Int {
@@ -99,6 +99,10 @@ class Meal: NSObject, NSCoding {
     func removeIngredientAt(index: Int) {
         ingredients.remove(at: index)
         MealList.shared.saveMeals()
+    }
+
+    func removeAllIngredients() {
+        ingredients.removeAll()
     }
 
     func ingredient(at index: Int) ->Ingredient {
