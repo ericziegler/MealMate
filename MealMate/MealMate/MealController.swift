@@ -137,6 +137,7 @@ class MealController: BaseViewController {
             let meal = Meal()
             meal.name = mealName
             meal.category = mealCategory
+            meal.isNeeded = true
             for i in 0..<ingredients.count {
                 let curIngredient = ingredients[i]
                 meal.addIngredient(curIngredient)

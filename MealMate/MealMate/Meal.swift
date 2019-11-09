@@ -109,4 +109,16 @@ class Meal: NSObject, NSCoding {
         return ingredients[index]
     }
 
+    // MARK: - Filtering
+
+    func neededIngredients() -> [Ingredient] {
+        var result = [Ingredient]()
+        for curIngredient in ingredients {
+            if curIngredient.isNeeded == true {
+                result.append(curIngredient)
+            }
+        }
+        return result
+    }
+
 }

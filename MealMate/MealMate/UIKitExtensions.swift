@@ -343,3 +343,50 @@ class GradientView: UIView {
     }
 
 }
+
+func screenshotTable(tableView: UITableView) -> UIImage {
+    var image = UIImage();
+    UIGraphicsBeginImageContextWithOptions(tableView.contentSize, false, UIScreen.main.scale)
+
+    // save initial values
+    let savedContentOffset = tableView.contentOffset;
+    let savedFrame = tableView.frame;
+    let savedBackgroundColor = tableView.backgroundColor
+
+    // reset offset to top left point
+    tableView.contentOffset = CGPoint(x: 0, y: 0);
+    // set frame to content size
+    tableView.frame = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: tableView.contentSize.height);
+    // remove background
+    tableView.backgroundColor = UIColor.clear
+
+    // make temp view with scroll view content size
+    // a workaround for issue when image on ipad was drawn incorrectly
+    let tempView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: tableView.contentSize.height));
+
+    // save superview
+    let tempSuperView = tableView.superview
+    // remove scrollView from old superview
+    tableView.removeFromSuperview()
+    // and add to tempView
+    tempView.addSubview(tableView)
+
+    // render view
+    // drawViewHierarchyInRect not working correctly
+    tempView.layer.render(in: UIGraphicsGetCurrentContext()!)
+    // and get image
+    image = UIGraphicsGetImageFromCurrentImageContext()!;
+
+    // and return everything back
+    tempView.subviews[0].removeFromSuperview()
+    tempSuperView?.addSubview(tableView)
+
+    // restore saved settings
+    tableView.contentOffset = savedContentOffset;
+    tableView.frame = savedFrame;
+    tableView.backgroundColor = savedBackgroundColor
+
+    UIGraphicsEndImageContext();
+
+    return image
+}
