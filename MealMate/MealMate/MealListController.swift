@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Constants
 
-let MealControllerId = "MealControllerId"
+let MealListControllerId = "MealListControllerId"
 let MealHeaderHeight: CGFloat = 70
 
 class MealListController: BaseViewController {
@@ -27,6 +27,9 @@ class MealListController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +41,9 @@ class MealListController: BaseViewController {
     // MARK: - Actions
 
     @IBAction func addTapped(_ sender: AnyObject) {
-
+        let controller = MealController.createControllerFor(meal: nil)
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true, completion: nil)
     }
 
     @IBAction func shareTapped(_ sender: AnyObject) {

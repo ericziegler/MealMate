@@ -20,6 +20,7 @@
 		78998AD923747A6100CA7584 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78998AD823747A6100CA7584 /* Ingredient.swift */; };
 		78998ADD23747A9700CA7584 /* MealList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78998ADC23747A9700CA7584 /* MealList.swift */; };
 		78998ADF23747A9F00CA7584 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78998ADE23747A9F00CA7584 /* Meal.swift */; };
+		78D5B18F2376676F008F7B67 /* MealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D5B18E2376676F008F7B67 /* MealController.swift */; };
 		78EEC1662375A41500730AF2 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEC1652375A41500730AF2 /* MealCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		78998AD823747A6100CA7584 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		78998ADC23747A9700CA7584 /* MealList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealList.swift; sourceTree = "<group>"; };
 		78998ADE23747A9F00CA7584 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		78D5B18E2376676F008F7B67 /* MealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealController.swift; sourceTree = "<group>"; };
 		78EEC1652375A41500730AF2 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 				789061D12373152C000DFC9B /* BaseControllers */,
 				789061B4237306A3000DFC9B /* Main.storyboard */,
 				78998AD62374687100CA7584 /* MealListController.swift */,
+				78D5B18E2376676F008F7B67 /* MealController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				789061C7237313E9000DFC9B /* FoundationExtensions.swift in Sources */,
 				78998AD72374687100CA7584 /* MealListController.swift in Sources */,
+				78D5B18F2376676F008F7B67 /* MealController.swift in Sources */,
 				78998ADD23747A9700CA7584 /* MealList.swift in Sources */,
 				789061B1237306A3000DFC9B /* AppDelegate.swift in Sources */,
 				78998ADF23747A9F00CA7584 /* Meal.swift in Sources */,

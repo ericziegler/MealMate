@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UVe-m7-rOn">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UVe-m7-rOn">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +16,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JY-RV-QbK">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Meals Yet!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-Ve-7zy" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="211" width="398" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="frX-s0-Ckw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                        <color key="textColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the &quot;+&quot; button in the top right to add your first meal." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asu-IV-Snh" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="229" width="398" height="149"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="149" id="Jih-Nw-cJZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <color key="textColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoDataArrow" translatesAutoresizingMaskIntoConstraints="NO" id="qSE-Fz-7Zw">
+                                        <rect key="frame" x="268" y="0.0" width="80" height="133"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="PRL-Cb-QhY"/>
+                                            <constraint firstAttribute="height" constant="133" id="kRf-25-ifq"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.9137254901960784" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="asu-IV-Snh" firstAttribute="leading" secondItem="0JY-RV-QbK" secondAttribute="leading" constant="8" id="HGn-bk-07a"/>
+                                    <constraint firstItem="2yM-Ve-7zy" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" constant="211" id="KmA-CQ-M5I"/>
+                                    <constraint firstAttribute="trailing" secondItem="asu-IV-Snh" secondAttribute="trailing" constant="8" id="Zx3-2I-nqA"/>
+                                    <constraint firstItem="2yM-Ve-7zy" firstAttribute="leading" secondItem="0JY-RV-QbK" secondAttribute="leading" constant="8" id="h4I-ij-7Mp"/>
+                                    <constraint firstAttribute="trailing" secondItem="2yM-Ve-7zy" secondAttribute="trailing" constant="8" id="hnc-4m-HI9"/>
+                                    <constraint firstAttribute="trailing" secondItem="qSE-Fz-7Zw" secondAttribute="trailing" constant="66" id="rGZ-vj-kYr"/>
+                                    <constraint firstItem="asu-IV-Snh" firstAttribute="top" secondItem="2yM-Ve-7zy" secondAttribute="bottom" constant="-23" id="sva-YF-AJs"/>
+                                    <constraint firstItem="qSE-Fz-7Zw" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" id="u9N-gr-qLq"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3sd-WZ-6Sc">
                                 <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                                 <color key="backgroundColor" red="0.9137254901960784" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -141,47 +180,6 @@
                                     <constraint firstItem="BbE-Vx-29r" firstAttribute="centerX" secondItem="SDU-bc-brj" secondAttribute="centerX" id="mH2-g8-Hd5"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JY-RV-QbK">
-                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Meals Yet!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-Ve-7zy" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="211" width="398" height="41"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="41" id="frX-s0-Ckw"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                        <color key="textColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the &quot;+&quot; button in the top right to add your first meal." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asu-IV-Snh" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="229" width="398" height="149"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="149" id="Jih-Nw-cJZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                        <color key="textColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoDataArrow" translatesAutoresizingMaskIntoConstraints="NO" id="qSE-Fz-7Zw">
-                                        <rect key="frame" x="268" y="0.0" width="80" height="133"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="PRL-Cb-QhY"/>
-                                            <constraint firstAttribute="height" constant="133" id="kRf-25-ifq"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.9137254901960784" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="asu-IV-Snh" firstAttribute="leading" secondItem="0JY-RV-QbK" secondAttribute="leading" constant="8" id="HGn-bk-07a"/>
-                                    <constraint firstItem="2yM-Ve-7zy" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" constant="211" id="KmA-CQ-M5I"/>
-                                    <constraint firstAttribute="trailing" secondItem="asu-IV-Snh" secondAttribute="trailing" constant="8" id="Zx3-2I-nqA"/>
-                                    <constraint firstItem="2yM-Ve-7zy" firstAttribute="leading" secondItem="0JY-RV-QbK" secondAttribute="leading" constant="8" id="h4I-ij-7Mp"/>
-                                    <constraint firstAttribute="trailing" secondItem="2yM-Ve-7zy" secondAttribute="trailing" constant="8" id="hnc-4m-HI9"/>
-                                    <constraint firstAttribute="trailing" secondItem="qSE-Fz-7Zw" secondAttribute="trailing" constant="66" id="rGZ-vj-kYr"/>
-                                    <constraint firstItem="asu-IV-Snh" firstAttribute="top" secondItem="2yM-Ve-7zy" secondAttribute="bottom" constant="-23" id="sva-YF-AJs"/>
-                                    <constraint firstItem="qSE-Fz-7Zw" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" id="u9N-gr-qLq"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.9137254901960784" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -209,6 +207,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8O8-Zd-J4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-123.18840579710145" y="98.4375"/>
+        </scene>
+        <!--Meal Controller-->
+        <scene sceneID="icD-8c-KSp">
+            <objects>
+                <viewController storyboardIdentifier="MealControllerId" id="eOL-TW-Dzo" customClass="MealController" customModule="MealMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jOj-hs-Xo3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rat-Hz-Qnr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hge-wn-J8s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="98"/>
         </scene>
     </scenes>
     <resources>
