@@ -37,7 +37,6 @@ class MealListController: BaseViewController {
         checkForMeals()
     }
 
-
     // MARK: - Actions
 
     @IBAction func addTapped(_ sender: AnyObject) {
@@ -47,7 +46,12 @@ class MealListController: BaseViewController {
     }
 
     @IBAction func shareTapped(_ sender: AnyObject) {
-
+         let image = UIImage(named: "Add")
+         let imageToShare = [ image! ]
+         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+         activityViewController.popoverPresentationController?.sourceView = self.view
+         activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook]
+         self.present(activityViewController, animated: true, completion: nil)
     }
 
     // MARK: - Layout

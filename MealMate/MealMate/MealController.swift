@@ -150,6 +150,11 @@ class MealController: BaseViewController {
 
 extension MealController: UITextFieldDelegate {
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         mealName = (textField.text) ?? ""
     }

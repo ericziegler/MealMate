@@ -292,8 +292,8 @@ extension UISegmentedControl {
             let highlightedBackgroundColor: UIColor = tintColor.withAlphaComponent(0.2)
             setBackgroundImage(highlightedBackgroundColor.image(), for: .highlighted, barMetrics: .default)
             setBackgroundImage(tintColorImage, for: [.highlighted, .selected], barMetrics: .default)
-            setTitleTextAttributes([.foregroundColor: UIColor.appDarkGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold)], for: .normal)
-            setTitleTextAttributes([.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold)], for: .selected)
+            setTitleTextAttributes([.foregroundColor: UIColor.appDarkGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)], for: .normal)
+            setTitleTextAttributes([.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold)], for: .selected)
             setDividerImage(tintColorImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
             layer.borderWidth = 1
             layer.borderColor = tintColor.cgColor
@@ -314,6 +314,17 @@ extension UIView {
         let topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
         let bottomConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: parentView, attribute: .bottom, multiplier: 1, constant: 0)
         parentView.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+    }
+
+    func screenshot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        if (image != nil) {
+            return image!
+        }
+        return UIImage()
     }
 
 }

@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Meals Yet!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-Ve-7zy" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="211" width="398" height="41"/>
+                                        <rect key="frame" x="8" y="140" width="398" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="frX-s0-Ckw"/>
                                         </constraints>
@@ -28,8 +28,8 @@
                                         <color key="textColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the &quot;+&quot; button in the top right to add your first meal." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asu-IV-Snh" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="229" width="398" height="149"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the + button in the top right to add your first meal." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asu-IV-Snh" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="158" width="398" height="149"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="149" id="Jih-Nw-cJZ"/>
                                         </constraints>
@@ -38,7 +38,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoDataArrow" translatesAutoresizingMaskIntoConstraints="NO" id="qSE-Fz-7Zw">
-                                        <rect key="frame" x="268" y="0.0" width="80" height="133"/>
+                                        <rect key="frame" x="268" y="4" width="80" height="133"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="PRL-Cb-QhY"/>
                                             <constraint firstAttribute="height" constant="133" id="kRf-25-ifq"/>
@@ -48,13 +48,13 @@
                                 <color key="backgroundColor" red="0.9137254901960784" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="asu-IV-Snh" firstAttribute="leading" secondItem="0JY-RV-QbK" secondAttribute="leading" constant="8" id="HGn-bk-07a"/>
-                                    <constraint firstItem="2yM-Ve-7zy" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" constant="211" id="KmA-CQ-M5I"/>
+                                    <constraint firstItem="2yM-Ve-7zy" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" constant="140" id="KmA-CQ-M5I"/>
                                     <constraint firstAttribute="trailing" secondItem="asu-IV-Snh" secondAttribute="trailing" constant="8" id="Zx3-2I-nqA"/>
                                     <constraint firstItem="2yM-Ve-7zy" firstAttribute="leading" secondItem="0JY-RV-QbK" secondAttribute="leading" constant="8" id="h4I-ij-7Mp"/>
                                     <constraint firstAttribute="trailing" secondItem="2yM-Ve-7zy" secondAttribute="trailing" constant="8" id="hnc-4m-HI9"/>
                                     <constraint firstAttribute="trailing" secondItem="qSE-Fz-7Zw" secondAttribute="trailing" constant="66" id="rGZ-vj-kYr"/>
                                     <constraint firstItem="asu-IV-Snh" firstAttribute="top" secondItem="2yM-Ve-7zy" secondAttribute="bottom" constant="-23" id="sva-YF-AJs"/>
-                                    <constraint firstItem="qSE-Fz-7Zw" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" id="u9N-gr-qLq"/>
+                                    <constraint firstItem="qSE-Fz-7Zw" firstAttribute="top" secondItem="0JY-RV-QbK" secondAttribute="top" constant="4" id="u9N-gr-qLq"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3sd-WZ-6Sc">
@@ -219,14 +219,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oY-7a-tRM" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flm-EX-y7o" userLabel="Separator">
-                                        <rect key="frame" x="0.0" y="99" width="414" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flm-EX-y7o" userLabel="Separator">
+                                        <rect key="frame" x="0.0" y="99" width="453" height="1"/>
                                         <color key="backgroundColor" red="0.61568627450980395" green="0.64313725490196072" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8l-hc-Lfp" customClass="BoldButton" customModule="MealMate" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="45" width="90" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8l-hc-Lfp" customClass="BoldButton" customModule="MealMate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="45" width="90" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="4GY-Un-dnQ"/>
+                                            <constraint firstAttribute="height" constant="50" id="pnT-hG-ety"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <state key="normal" title="Close">
                                             <color key="titleColor" red="0.10588235294117647" green="0.80784313725490198" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,9 +237,22 @@
                                             <action selector="cancelTapped:" destination="eOL-TW-Dzo" eventType="touchUpInside" id="F7J-um-hD1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgU-uL-DBE" customClass="BoldButton" customModule="MealMate" customModuleProvider="target">
-                                        <rect key="frame" x="316" y="45" width="90" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOD-qY-Xlu" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
+                                        <rect key="frame" x="177.5" y="54" width="59" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="59" id="dr2-gM-uCy"/>
+                                            <constraint firstAttribute="height" constant="32" id="hfU-74-MrA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <color key="textColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgU-uL-DBE" customClass="BoldButton" customModule="MealMate" customModuleProvider="target">
+                                        <rect key="frame" x="324" y="45" width="90" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="UGZ-MZ-hn6"/>
+                                            <constraint firstAttribute="height" constant="50" id="jbc-uL-raP"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <state key="normal" title="Add">
                                             <color key="titleColor" red="0.1058823529" green="0.80784313730000001" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -246,17 +261,20 @@
                                             <action selector="addUpdateTapped:" destination="eOL-TW-Dzo" eventType="touchUpInside" id="RTb-Zt-zqy"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Meal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOD-qY-Xlu" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
-                                        <rect key="frame" x="177.5" y="54" width="59" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                        <color key="textColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9137254901960784" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="f8l-hc-Lfp" firstAttribute="leading" secondItem="0oY-7a-tRM" secondAttribute="leading" id="99n-7b-A1g"/>
+                                    <constraint firstItem="UOD-qY-Xlu" firstAttribute="centerY" secondItem="f8l-hc-Lfp" secondAttribute="centerY" id="B67-oN-f4p"/>
+                                    <constraint firstItem="flm-EX-y7o" firstAttribute="leading" secondItem="0oY-7a-tRM" secondAttribute="leading" id="DTS-Jq-YiT"/>
                                     <constraint firstAttribute="height" constant="100" id="DUe-VO-CdD"/>
+                                    <constraint firstItem="QgU-uL-DBE" firstAttribute="centerY" secondItem="f8l-hc-Lfp" secondAttribute="centerY" id="DpB-54-IIn"/>
+                                    <constraint firstItem="flm-EX-y7o" firstAttribute="top" secondItem="0oY-7a-tRM" secondAttribute="top" constant="99" id="QRC-uO-XKP"/>
+                                    <constraint firstItem="flm-EX-y7o" firstAttribute="top" secondItem="f8l-hc-Lfp" secondAttribute="bottom" constant="4" id="TRa-t2-A1A"/>
+                                    <constraint firstItem="UOD-qY-Xlu" firstAttribute="centerX" secondItem="0oY-7a-tRM" secondAttribute="centerX" id="k49-3T-1kY"/>
+                                    <constraint firstAttribute="trailing" secondItem="flm-EX-y7o" secondAttribute="trailing" constant="-39" id="oYI-WK-plD"/>
+                                    <constraint firstAttribute="bottom" secondItem="flm-EX-y7o" secondAttribute="bottom" id="tjn-wI-a6K"/>
+                                    <constraint firstAttribute="trailing" secondItem="QgU-uL-DBE" secondAttribute="trailing" id="w45-xM-oMl"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zHC-mM-Tkq">
