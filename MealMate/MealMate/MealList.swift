@@ -214,7 +214,7 @@ extension MealList {
 //
 //        meal = Meal()
 //        meal.name = "2% Milk"
-//        meal.category = .misc
+//        meal.category = .general
 //        meal.isNeeded = true
 //
 //        addMeal(meal)

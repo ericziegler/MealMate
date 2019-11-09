@@ -20,7 +20,7 @@ enum MealCategory: Int {
     case breakfast
     case lunch
     case dinner
-    case misc
+    case general
 
     var displayName: String {
         get {
@@ -31,7 +31,7 @@ enum MealCategory: Int {
                 return "Lunch"
             case .dinner:
                 return "Dinner"
-            case .misc:
+            case .general:
                 return "General"
             }
         }
@@ -46,7 +46,7 @@ class Meal: NSObject, NSCoding {
 
     var identifier = ""
     var name = ""
-    var category = MealCategory.misc
+    var category = MealCategory.general
     private var ingredients = [Ingredient]()
     var isNeeded = false
     var ingredientCount: Int {
