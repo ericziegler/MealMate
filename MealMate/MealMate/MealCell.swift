@@ -32,9 +32,9 @@ class MealCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        bgView.layer.cornerRadius = 10
-        bgView.layer.borderColor = UIColor.appGray.cgColor
-        bgView.layer.borderWidth = 1.5
+        bgView.layer.cornerRadius = 12
+        bgView.layer.borderColor = UIColor.appDarkGray.cgColor
+        bgView.layer.borderWidth = 1
     }
 
     // MARK: - Actions

@@ -98,7 +98,7 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
         let category = MealCategory(rawValue: section)!
 
         let bg = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-        bg.backgroundColor = UIColor.appLightGray
+        bg.backgroundColor = UIColor.appGray
 
         let icon = UIImageView(image: UIImage(named: category.displayName)?.maskedImageWithColor(UIColor.appDark))
         bg.addSubview(icon)
