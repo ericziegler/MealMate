@@ -107,22 +107,19 @@ extension MealList {
 //        meal.category = .dinner
 //
 //        var ingredient = Ingredient()
-//        ingredient.name = "Pasta noodles"
-//        ingredient.quantity = 1
+//        ingredient.name = "2 lb. pasta noodles"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Spaghetti sauce"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 jar spaghetti sauce"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Meatballs"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 bag meatballs"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
@@ -134,22 +131,19 @@ extension MealList {
 //        meal.category = .dinner
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Steak"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 lb. Steak"
 //        ingredient.isNeeded = true
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Baked potatoes"
-//        ingredient.quantity = 2
+//        ingredient.name = "2 baked potatoes"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Steak seasoning"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 bottle steak seasoning"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
@@ -162,22 +156,19 @@ extension MealList {
 //        meal.isNeeded = true
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Texas toast"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 loaf texas toast"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Butter"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 container margarine"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Syrup"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 bottle syrup"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
@@ -190,22 +181,19 @@ extension MealList {
 //        meal.isNeeded = true
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Bacon"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 package bacon"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Lettuce"
-//        ingredient.quantity = 1
+//        ingredient.name = "1 bag lettuce"
 //        ingredient.isNeeded = true
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
 //
 //        ingredient = Ingredient()
-//        ingredient.name = "Tomato"
-//        ingredient.quantity = 1
+//        ingredient.name = "2 roma tomatoes"
 //        ingredient.isNeeded = false
 //        ingredient.mealId = meal.identifier
 //        meal.addIngredient(ingredient)
@@ -233,7 +221,7 @@ extension MealList {
 //            print("Ingredients:")
 //            for i in 0..<curMeal.ingredientCount {
 //                let curIngredient = curMeal.ingredient(at: i)
-//                print("\t\(curIngredient.quantity) x \t\(curIngredient.name) is \(curIngredient.isNeeded)")
+//                print("\t\(curIngredient.name) is \(curIngredient.isNeeded)")
 //            }
 //            print("Is Needed\t\(curMeal.isNeeded)")
 //            print("\n")

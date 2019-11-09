@@ -11,8 +11,6 @@ import Foundation
 // MARK: - Constants
 
 let IngredientNameCacheKey = "IngredientNameCacheKey"
-// TODO: EZ - Remove?
-//let IngredientQuantityCacheKey = "IngredientQuantityCacheKey"
 let IngredientNeededCacheKey = "IngredientNeededCacheKey"
 let IngredientMealIdCacheKey = "IngredientMealIdCacheKey"
 
@@ -21,8 +19,6 @@ class Ingredient: NSObject, NSCoding {
     // MARK: - Properties
 
     var name = ""
-    // TODO: EZ - Remove?
-    //var quantity = 0
     var isNeeded = false
     var mealId = ""
 
@@ -38,8 +34,6 @@ class Ingredient: NSObject, NSCoding {
         if let ingredientName = decoder.decodeObject(forKey: IngredientNameCacheKey) as? String {
             name = ingredientName
         }
-        // TODO: EZ - Remove?
-        //quantity = decoder.decodeInteger(forKey: IngredientQuantityCacheKey)
         isNeeded = decoder.decodeBool(forKey: IngredientNeededCacheKey)
         if let ingredientMealId = decoder.decodeObject(forKey: IngredientMealIdCacheKey) as? String {
             mealId = ingredientMealId
@@ -48,8 +42,6 @@ class Ingredient: NSObject, NSCoding {
 
     public func encode(with coder: NSCoder) {
         coder.encode(name, forKey: IngredientNameCacheKey)
-        // TODO: EZ - Remove?
-        //coder.encode(quantity, forKey: IngredientQuantityCacheKey)
         coder.encode(isNeeded, forKey: IngredientNeededCacheKey)
         coder.encode(mealId, forKey: IngredientMealIdCacheKey)
     }
