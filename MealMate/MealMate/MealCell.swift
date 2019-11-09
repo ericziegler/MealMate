@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Constants
 
 let MealCellId = "MealCellId"
-let MealCellHeight: CGFloat = 61
+let MealCellHeight: CGFloat = 70
 
 // MARK: - Protocols
 
@@ -23,11 +23,19 @@ class MealCell: UITableViewCell {
 
     // MARK: - Properties
 
+    @IBOutlet var bgView: UIView!
     @IBOutlet var nameLabel: BoldLabel!
     @IBOutlet var checkImageView: UIImageView!
     var mealIsNeeded = false
     var mealIdentifier = ""
     var delegate: MealCellDelegate?
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        bgView.layer.cornerRadius = 10
+        bgView.layer.borderColor = UIColor.appGray.cgColor
+        bgView.layer.borderWidth = 1.5
+    }
 
     // MARK: - Actions
 

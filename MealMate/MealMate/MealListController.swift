@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Constants
 
 let MealControllerId = "MealControllerId"
-let MealHeaderHeight: CGFloat = 80
+let MealHeaderHeight: CGFloat = 70
 
 class MealListController: BaseViewController {
 
@@ -19,9 +19,8 @@ class MealListController: BaseViewController {
 
     @IBOutlet var headerView: UIView!
     @IBOutlet var shareButton: UIButton!
-    @IBOutlet var mealTable: UITableView!
-    // TODO: EZ - Add no data view
-    //@IBOutlet var noDataView: UIView!
+    @IBOutlet var mealTable: UITableView!    
+    @IBOutlet var noDataView: UIView!
     var mealList = MealList.shared
 
     // MARK: - Init
@@ -51,14 +50,12 @@ class MealListController: BaseViewController {
     private func checkForMeals() {
         mealList.loadMeals()
         if mealList.count > 0 {
-            // TODO: EZ = Add
-            //noData.isHidden = true
+            noDataView.isHidden = true
             mealTable.reloadData()
             shareButton.isEnabled = true
         } else {
-            // TODO: EZ - Add
-//            self.view.bringSubviewToFront(noMealsView)
-//            noMealsView.isHidden = false
+            self.view.bringSubviewToFront(noDataView)
+            noDataView.isHidden = false
             shareButton.isEnabled = false
         }
     }
@@ -82,7 +79,6 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
         let meal = mealList.mealsForCategory(category)[indexPath.row]
         cell.delegate = self
         cell.layoutFor(meal: meal)
-
         return cell
     }
 
