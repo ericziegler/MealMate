@@ -30,6 +30,30 @@ class MealListController: BaseViewController {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
+        setupNavBar()
+    }
+
+    private func setupNavBar() {
+        self.title = "Meal Mate"
+        self.navigationController?.navigationBar.titleTextAttributes = navTitleTextAttributes()
+
+        if let shareImage = UIImage(named: "Share") {
+            let shareButton = UIButton(type: .custom)
+            shareButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
+            shareButton.setImage(shareImage, for: .normal)
+            shareButton.frame = CGRect(x: 0, y: 0, width: shareImage.size.width, height: shareImage.size.height)
+            let shareItem = UIBarButtonItem(customView: shareButton)
+            self.navigationItem.leftBarButtonItems = [shareItem]
+        }
+
+        if let addImage = UIImage(named: "Add") {
+            let addButton = UIButton(type: .custom)
+            addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
+            addButton.setImage(addImage, for: .normal)
+            addButton.frame = CGRect(x: 0, y: 0, width: addImage.size.width, height: addImage.size.height)
+            let addItem = UIBarButtonItem(customView: addButton)
+            self.navigationItem.rightBarButtonItems = [addItem]
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
