@@ -11,14 +11,13 @@ import UIKit
 // MARK: - Constants
 
 let MealListControllerId = "MealListControllerId"
-let MealHeaderHeight: CGFloat = 70
+let MealHeaderHeight: CGFloat = 60
 
 class MealListController: BaseViewController {
 
     // MARK: - Properties
 
     @IBOutlet var headerView: UIView!
-    @IBOutlet var shareButton: UIButton!
     @IBOutlet var mealTable: UITableView!    
     @IBOutlet var noDataView: UIView!
     var mealList = MealList.shared
@@ -82,11 +81,9 @@ class MealListController: BaseViewController {
         if mealList.count > 0 {
             noDataView.isHidden = true
             mealTable.reloadData()
-            shareButton.isEnabled = true
         } else {
             self.view.bringSubviewToFront(noDataView)
             noDataView.isHidden = false
-            shareButton.isEnabled = false
         }
     }
 
@@ -151,9 +148,10 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
         let category = MealCategory(rawValue: section)!
 
         let bg = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-        bg.backgroundColor = UIColor.appGray
+        bg.backgroundColor = UIColor.appLightGray
 
         let icon = UIImageView(image: UIImage(named: category.displayName)?.maskedImageWithColor(UIColor.appDark))
+        icon.contentMode = .scaleAspectFit
         bg.addSubview(icon)
         icon.translatesAutoresizingMaskIntoConstraints = false
         var leadingConstraint = NSLayoutConstraint(item: icon, attribute: .leading, relatedBy: .equal, toItem: bg, attribute: .leading, multiplier: 1, constant: 15)
