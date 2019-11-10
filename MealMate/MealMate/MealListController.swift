@@ -63,18 +63,40 @@ class MealListController: BaseViewController {
     // MARK: - Actions
 
     @IBAction func addTapped(_ sender: AnyObject) {
-        let controller = MealController.createControllerFor(meal: nil)
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+        showMealCardFor(meal: nil)
+        // TODO: Implement meal view with ingredients
+//        let controller = ModalMealController.createControllerFor(meal: nil)
+//        controller.modalPresentationStyle = .fullScreen
+//        navController.present(controller, animated: false, completion: nil)
+//        let controller = MealController.createControllerFor(meal: nil)
+//        controller.modalPresentationStyle = .fullScreen
+//        self.present(controller, animated: true, completion: nil)
     }
 
     @IBAction func shareTapped(_ sender: AnyObject) {
-        let controller = GroceriesController.createController()
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+
+        // TODO: Implement sharing grocery list as an image instead of text
+//        let controller = GroceriesController.createController()
+//        controller.modalPresentationStyle = .fullScreen
+//        self.present(controller, animated: true, completion: nil)
     }
 
     // MARK: - Layout
+
+    private func showMealCardFor(meal: Meal?) {
+        guard let navController = navigationController else { return }
+        let mealView: MealView = UIView.fromNib()
+        mealView.meal = meal
+        mealView.setupMeal()
+        mealView.alpha = 0
+        mealView.fillInParentView(parentView: navController.view)
+        mealView.delegate = self
+        UIView.animate(withDuration: 0.1, animations: {
+            mealView.alpha = 1
+        }) { (didFinish) in
+            mealView.showCard()
+        }
+    }
 
     private func checkForMeals() {
         mealList.loadMeals()
@@ -116,9 +138,11 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = MealCategory(rawValue: indexPath.section)!
         let meal = mealList.mealsForCategory(category)[indexPath.row]
-        let controller = MealController.createControllerFor(meal: meal)
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+        showMealCardFor(meal: meal)
+        // TODO: Add more robust meal view with ingredients support
+//        let controller = MealController.createControllerFor(meal: meal)
+//        controller.modalPresentationStyle = .fullScreen
+//        self.present(controller, animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -187,6 +211,21 @@ extension MealListController: MealCellDelegate {
                 break
             }
         }
+    }
+
+}
+
+extension MealListController: MealViewDelegate {
+
+    func mealViewDidClose(mealView: MealView) {
+        mealView.removeFromSuperview()
+        checkForMeals()
+    }
+
+    func mealDidEncounterError(mealView: MealView, error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780077002378450200D3A9D5 /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780076FF2378450200D3A9D5 /* MealView.swift */; };
+		78007702237845CD00D3A9D5 /* MealView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78007701237845CC00D3A9D5 /* MealView.xib */; };
 		789061B1237306A3000DFC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789061B0237306A3000DFC9B /* AppDelegate.swift */; };
 		789061B6237306A3000DFC9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 789061B4237306A3000DFC9B /* Main.storyboard */; };
 		789061B8237306A4000DFC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 789061B7237306A4000DFC9B /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		780076FF2378450200D3A9D5 /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
+		78007701237845CC00D3A9D5 /* MealView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealView.xib; sourceTree = "<group>"; };
 		789061AD237306A3000DFC9B /* MealMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		789061B0237306A3000DFC9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		789061B5237306A3000DFC9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 		789061C92373149E000DFC9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				780076FF2378450200D3A9D5 /* MealView.swift */,
+				78007701237845CC00D3A9D5 /* MealView.xib */,
 				78EEC1652375A41500730AF2 /* MealCell.swift */,
 				78C9D9B12376E11900D78997 /* IngredientCell.swift */,
 				78C9D9B52377044300D78997 /* GroceryCell.swift */,
@@ -220,6 +226,7 @@
 				789061BB237306A4000DFC9B /* LaunchScreen.storyboard in Resources */,
 				789061B8237306A4000DFC9B /* Assets.xcassets in Resources */,
 				789061B6237306A3000DFC9B /* Main.storyboard in Resources */,
+				78007702237845CD00D3A9D5 /* MealView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +240,7 @@
 				789061C7237313E9000DFC9B /* FoundationExtensions.swift in Sources */,
 				78998AD72374687100CA7584 /* MealListController.swift in Sources */,
 				78D5B18F2376676F008F7B67 /* MealController.swift in Sources */,
+				780077002378450200D3A9D5 /* MealView.swift in Sources */,
 				78998ADD23747A9700CA7584 /* MealList.swift in Sources */,
 				789061B1237306A3000DFC9B /* AppDelegate.swift in Sources */,
 				78C9D9B22376E11900D78997 /* IngredientCell.swift in Sources */,
