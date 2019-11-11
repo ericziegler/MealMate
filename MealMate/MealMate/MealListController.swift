@@ -11,14 +11,13 @@ import UIKit
 // MARK: - Constants
 
 let MealListControllerId = "MealListControllerId"
-let MealHeaderHeight: CGFloat = 70
+let MealHeaderHeight: CGFloat = 60
 
 class MealListController: BaseViewController {
 
     // MARK: - Properties
 
     @IBOutlet var headerView: UIView!
-    @IBOutlet var shareButton: UIButton!
     @IBOutlet var mealTable: UITableView!    
     @IBOutlet var noDataView: UIView!
     var mealList = MealList.shared
@@ -30,6 +29,30 @@ class MealListController: BaseViewController {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
+        setupNavBar()
+    }
+
+    private func setupNavBar() {
+        self.title = "Meal Mate"
+        self.navigationController?.navigationBar.titleTextAttributes = navTitleTextAttributes()
+
+        if let shareImage = UIImage(named: "Share") {
+            let shareButton = UIButton(type: .custom)
+            shareButton.addTarget(self, action: #selector(shareTapped(_:)), for: .touchUpInside)
+            shareButton.setImage(shareImage, for: .normal)
+            shareButton.frame = CGRect(x: 0, y: 0, width: shareImage.size.width, height: shareImage.size.height)
+            let shareItem = UIBarButtonItem(customView: shareButton)
+            self.navigationItem.leftBarButtonItems = [shareItem]
+        }
+
+        if let addImage = UIImage(named: "Add") {
+            let addButton = UIButton(type: .custom)
+            addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
+            addButton.setImage(addImage, for: .normal)
+            addButton.frame = CGRect(x: 0, y: 0, width: addImage.size.width, height: addImage.size.height)
+            let addItem = UIBarButtonItem(customView: addButton)
+            self.navigationItem.rightBarButtonItems = [addItem]
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -40,29 +63,51 @@ class MealListController: BaseViewController {
     // MARK: - Actions
 
     @IBAction func addTapped(_ sender: AnyObject) {
-        let controller = MealController.createControllerFor(meal: nil)
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+        showMealCardFor(meal: nil)
+        // TODO: Implement meal view with ingredients
+//        let controller = ModalMealController.createControllerFor(meal: nil)
+//        controller.modalPresentationStyle = .fullScreen
+//        navController.present(controller, animated: false, completion: nil)
+//        let controller = MealController.createControllerFor(meal: nil)
+//        controller.modalPresentationStyle = .fullScreen
+//        self.present(controller, animated: true, completion: nil)
     }
 
     @IBAction func shareTapped(_ sender: AnyObject) {
-        let controller = GroceriesController.createController()
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+        let items = [mealList.formattedShareText]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
+        // TODO: Implement sharing grocery list as an image instead of text
+//        let controller = GroceriesController.createController()
+//        controller.modalPresentationStyle = .fullScreen
+//        self.present(controller, animated: true, completion: nil)
     }
 
     // MARK: - Layout
+
+    private func showMealCardFor(meal: Meal?) {
+        guard let navController = navigationController else { return }
+        let mealView: MealView = UIView.fromNib()
+        mealView.meal = meal
+        mealView.setupMeal()
+        mealView.alpha = 0
+        mealView.fillInParentView(parentView: navController.view)
+        mealView.delegate = self
+        UIView.animate(withDuration: 0.1, animations: {
+            mealView.alpha = 1
+        }) { (didFinish) in
+            mealView.showCard()
+        }
+    }
 
     private func checkForMeals() {
         mealList.loadMeals()
         if mealList.count > 0 {
             noDataView.isHidden = true
             mealTable.reloadData()
-            shareButton.isEnabled = true
         } else {
             self.view.bringSubviewToFront(noDataView)
             noDataView.isHidden = false
-            shareButton.isEnabled = false
         }
     }
 
@@ -95,9 +140,11 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = MealCategory(rawValue: indexPath.section)!
         let meal = mealList.mealsForCategory(category)[indexPath.row]
-        let controller = MealController.createControllerFor(meal: meal)
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+        showMealCardFor(meal: meal)
+        // TODO: Add more robust meal view with ingredients support
+//        let controller = MealController.createControllerFor(meal: meal)
+//        controller.modalPresentationStyle = .fullScreen
+//        self.present(controller, animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -127,9 +174,10 @@ extension MealListController: UITableViewDataSource, UITableViewDelegate {
         let category = MealCategory(rawValue: section)!
 
         let bg = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-        bg.backgroundColor = UIColor.appGray
+        bg.backgroundColor = UIColor.appLightGray
 
         let icon = UIImageView(image: UIImage(named: category.displayName)?.maskedImageWithColor(UIColor.appDark))
+        icon.contentMode = .scaleAspectFit
         bg.addSubview(icon)
         icon.translatesAutoresizingMaskIntoConstraints = false
         var leadingConstraint = NSLayoutConstraint(item: icon, attribute: .leading, relatedBy: .equal, toItem: bg, attribute: .leading, multiplier: 1, constant: 15)
@@ -165,6 +213,21 @@ extension MealListController: MealCellDelegate {
                 break
             }
         }
+    }
+
+}
+
+extension MealListController: MealViewDelegate {
+
+    func mealViewDidClose(mealView: MealView) {
+        mealView.removeFromSuperview()
+        checkForMeals()
+    }
+
+    func mealDidEncounterError(mealView: MealView, error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
