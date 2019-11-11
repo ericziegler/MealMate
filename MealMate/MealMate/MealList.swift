@@ -22,6 +22,35 @@ class MealList {
             return meals.count
         }
     }
+    var formattedShareText: String {
+        var result = ""
+        result += formattedShareMealsFor(category: .breakfast)
+        result += formattedShareMealsFor(category: .lunch)
+        result += formattedShareMealsFor(category: .dinner)
+        result += formattedShareMealsFor(category: .general)
+        print(result)
+        return result
+    }
+
+    private func formattedShareMealsFor(category: MealCategory) -> String {
+        var result = ""
+        let categoryMeals = mealsForCategory(category)
+        var neededMeals = [Meal]()
+        for curCategoryMeal in categoryMeals {
+            if curCategoryMeal.isNeeded == true {
+                neededMeals.append(curCategoryMeal)
+            }
+        }
+        if neededMeals.count > 0 {
+            result += "** \(category.displayName) **\n"
+            for curNeededMeal in neededMeals {
+                if curNeededMeal.isNeeded {
+                    result += "\t- \(curNeededMeal.name)\n"
+                }
+            }
+        }
+        return result
+    }
 
     // MARK: - Init
 

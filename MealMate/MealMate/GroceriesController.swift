@@ -34,7 +34,7 @@ class GroceriesController: BaseViewController {
     }
 
     @IBAction func shareTapped(_ sender: AnyObject) {
-        let image = screenshotTable(tableView: listTable)
+        let image = UIView.screenshotTable(tableView: listTable)
         let imageToShare = [image]
 
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
