@@ -38,7 +38,7 @@ class MealListController: BaseViewController {
 
         if let shareImage = UIImage(named: "Share") {
             let shareButton = UIButton(type: .custom)
-            shareButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
+            shareButton.addTarget(self, action: #selector(shareTapped(_:)), for: .touchUpInside)
             shareButton.setImage(shareImage, for: .normal)
             shareButton.frame = CGRect(x: 0, y: 0, width: shareImage.size.width, height: shareImage.size.height)
             let shareItem = UIBarButtonItem(customView: shareButton)
@@ -74,7 +74,9 @@ class MealListController: BaseViewController {
     }
 
     @IBAction func shareTapped(_ sender: AnyObject) {
-
+        let items = [mealList.formattedShareText]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
         // TODO: Implement sharing grocery list as an image instead of text
 //        let controller = GroceriesController.createController()
 //        controller.modalPresentationStyle = .fullScreen
