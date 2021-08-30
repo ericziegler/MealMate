@@ -42,7 +42,6 @@
 		785D4D0626DD698C003FB0E1 /* FontComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4CFF26DD698C003FB0E1 /* FontComponents.swift */; };
 		785D4D0726DD698C003FB0E1 /* LabelComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4D0026DD698C003FB0E1 /* LabelComponents.swift */; };
 		785D4D0826DD698C003FB0E1 /* TextViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4D0126DD698C003FB0E1 /* TextViewComponents.swift */; };
-		785D4D0B26DD69F1003FB0E1 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4D0A26DD69F1003FB0E1 /* Toast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,7 +82,6 @@
 		785D4CFF26DD698C003FB0E1 /* FontComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontComponents.swift; sourceTree = "<group>"; };
 		785D4D0026DD698C003FB0E1 /* LabelComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponents.swift; sourceTree = "<group>"; };
 		785D4D0126DD698C003FB0E1 /* TextViewComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewComponents.swift; sourceTree = "<group>"; };
-		785D4D0A26DD69F1003FB0E1 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +177,6 @@
 		785D4CD026DD6881003FB0E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				785D4D0926DD69E9003FB0E1 /* Standard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,14 +250,6 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		785D4D0926DD69E9003FB0E1 /* Standard */ = {
-			isa = PBXGroup;
-			children = (
-				785D4D0A26DD69F1003FB0E1 /* Toast.swift */,
-			);
-			path = Standard;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -271,7 +260,6 @@
 				785D4CA826DD6792003FB0E1 /* Sources */,
 				785D4CA926DD6792003FB0E1 /* Frameworks */,
 				785D4CAA26DD6792003FB0E1 /* Resources */,
-				785D4D0C26DD6A0D003FB0E1 /* Build Number */,
 			);
 			buildRules = (
 			);
@@ -331,27 +319,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		785D4D0C26DD6A0D003FB0E1 /* Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		785D4CA826DD6792003FB0E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -379,7 +346,6 @@
 				785D4CB026DD6792003FB0E1 /* AppDelegate.swift in Sources */,
 				785D4CDC26DD68F9003FB0E1 /* AppUtilities.swift in Sources */,
 				785D4CF726DD6966003FB0E1 /* URLExtensions.swift in Sources */,
-				785D4D0B26DD69F1003FB0E1 /* Toast.swift in Sources */,
 				785D4CF026DD6933003FB0E1 /* UITextFieldExtensions.swift in Sources */,
 				785D4D0526DD698C003FB0E1 /* CollectionViewComponents.swift in Sources */,
 				785D4CB226DD6792003FB0E1 /* SceneDelegate.swift in Sources */,

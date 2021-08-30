@@ -40,7 +40,7 @@ class BaseViewController: UIViewController {
 
     private func updateAppearance() {
         self.navigationController?.navigationBar.titleTextAttributes = navTitleTextAttributes()
-        self.view.backgroundColor = UIColor.appBackground
+        self.view.backgroundColor = UIColor.appLight
     }
 
     func showAlert(title: String?, message: String?) {

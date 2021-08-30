@@ -5,25 +5,29 @@
 import UIKit
 
 extension UIColor {
-
-    class var appMain: UIColor {
-        return UIColor(hex: 0xA5ACAF)
+    
+    class var appLight: UIColor {
+        return UIColor(hex: 0xf7f8f3)
     }
-
-    class var appText: UIColor {
-        return UIColor(hex: 0xFFFFFF)
+    
+    class var appMedium: UIColor {
+        return UIColor(hex: 0xe4e6e1)
     }
-
-    class var appSecondaryText: UIColor {
-        return UIColor(hex: 0xD9D9D9)
+    
+    class var appDark: UIColor {
+        return UIColor(hex: 0x222222)
     }
-
-    class var appBackground: UIColor {
-        return UIColor(hex: 0x000000)
+    
+    class var appRed: UIColor {
+        return UIColor(hex: 0xf7444e)
     }
-
-    class var appNavBar: UIColor {
-        return UIColor(hex: 0x121212)
+    
+    class var appBlue: UIColor {
+        return UIColor(hex: 0x78bcc4)
+    }
+    
+    class var appNavy: UIColor {
+        return UIColor(hex: 0x002c3e)
     }
 
 }

@@ -75,7 +75,7 @@ class ActionButton: MediumButton {
 
     override func commonInit() {
         super.commonInit()
-        self.backgroundColor = UIColor.appMain
+        self.backgroundColor = UIColor.appRed
         self.layer.cornerRadius = 6
         self.setTitleColor(UIColor.white, for: .normal)
         self.setTitleColor(UIColor.white, for: .disabled)
@@ -155,7 +155,7 @@ class RemoteButton: RegularButton {
 
     func load(url: String?, altImage: String? = nil, isCircle: Bool = true, allowsInteraction: Bool = false, cacheType: RemoteImageCacheType = .memory) {
         // reset background color
-        self.backgroundColor = UIColor.appSecondaryText
+        self.backgroundColor = UIColor.appMedium
 
         // clip the image into a circle, if necessary
         self.layoutIfNeeded()

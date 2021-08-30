@@ -86,7 +86,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         // customize back button
-        let backImage = UIImage(named: "Back")?.maskedWithColor(UIColor.appText)
+        let backImage = UIImage(named: "Back")?.maskedWithColor(UIColor.appLight)
         viewController.navigationController?.navigationBar.backIndicatorImage = backImage
         viewController.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
 
