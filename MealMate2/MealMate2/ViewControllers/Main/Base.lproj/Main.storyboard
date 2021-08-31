@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="09o-w3-LsD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Base Navigation Controller-->
+        <scene sceneID="Xl9-5E-f69">
+            <objects>
+                <navigationController id="09o-w3-LsD" customClass="BaseNavigationController" customModule="MealMate2" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FlS-3J-Dhm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="g1M-pZ-BJR" kind="relationship" relationship="rootViewController" id="pDQ-dy-dPX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iPS-PF-NTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-711" y="89"/>
+        </scene>
+        <!--Main Controller-->
+        <scene sceneID="RXp-SW-gf5">
+            <objects>
+                <viewController storyboardIdentifier="MainControllerId" id="g1M-pZ-BJR" customClass="MainController" customModule="MealMate2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cF9-rf-68a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pgV-QH-aZz">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroceryCellId" id="X7K-LU-uVN" customClass="GroceryCell" customModule="MealMate2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="59"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X7K-LU-uVN" id="iPE-Eq-hut">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grip" translatesAutoresizingMaskIntoConstraints="NO" id="QJ2-Sq-oPk">
+                                                    <rect key="frame" x="376.5" y="22" width="17.5" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="QJ2-Sq-oPk" secondAttribute="height" multiplier="13:11" id="LeD-dE-UAc"/>
+                                                        <constraint firstAttribute="height" constant="15" id="rhF-e6-gQA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check" translatesAutoresizingMaskIntoConstraints="NO" id="AGi-ts-Ems">
+                                                    <rect key="frame" x="15" y="23" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="AGi-ts-Ems" secondAttribute="height" id="CIC-Zr-JCv"/>
+                                                        <constraint firstAttribute="width" constant="16" id="CQq-Nt-cGO"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grocery" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3y-V0-RuR" customClass="RegularLabel" customModule="MealMate2" customModuleProvider="target">
+                                                    <rect key="frame" x="43" y="18" width="321.5" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZPB-xC-XB7" userLabel="Separator">
+                                                    <rect key="frame" x="0.0" y="58" width="414" height="1"/>
+                                                    <color key="backgroundColor" red="0.89411764705882346" green="0.90196078431372551" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="cG5-hf-1E5"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="QJ2-Sq-oPk" secondAttribute="trailing" constant="20" id="9t7-oG-6GJ"/>
+                                                <constraint firstItem="QJ2-Sq-oPk" firstAttribute="centerY" secondItem="iPE-Eq-hut" secondAttribute="centerY" id="A1i-3b-eLK"/>
+                                                <constraint firstItem="QJ2-Sq-oPk" firstAttribute="leading" secondItem="q3y-V0-RuR" secondAttribute="trailing" constant="12" id="Fs9-58-r8z"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZPB-xC-XB7" secondAttribute="bottom" id="JSQ-Jw-7Qt"/>
+                                                <constraint firstItem="AGi-ts-Ems" firstAttribute="top" secondItem="q3y-V0-RuR" secondAttribute="top" constant="5" id="Me6-dL-5We"/>
+                                                <constraint firstItem="q3y-V0-RuR" firstAttribute="leading" secondItem="AGi-ts-Ems" secondAttribute="trailing" constant="12" id="U8j-6o-POT"/>
+                                                <constraint firstAttribute="bottom" secondItem="q3y-V0-RuR" secondAttribute="bottom" constant="18" id="Zfc-kk-CGu"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZPB-xC-XB7" secondAttribute="trailing" id="i3a-6r-azS"/>
+                                                <constraint firstItem="ZPB-xC-XB7" firstAttribute="leading" secondItem="iPE-Eq-hut" secondAttribute="leading" id="lGY-LA-YbG"/>
+                                                <constraint firstItem="AGi-ts-Ems" firstAttribute="leading" secondItem="iPE-Eq-hut" secondAttribute="leading" constant="15" id="nPb-aZ-KWX"/>
+                                                <constraint firstItem="q3y-V0-RuR" firstAttribute="top" secondItem="iPE-Eq-hut" secondAttribute="top" constant="18" id="stU-3y-tdz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="checkImageView" destination="AGi-ts-Ems" id="S2l-af-p1d"/>
+                                            <outlet property="gripImageView" destination="QJ2-Sq-oPk" id="dkh-vn-nzd"/>
+                                            <outlet property="nameLabel" destination="q3y-V0-RuR" id="Y2e-zM-K6S"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="g1M-pZ-BJR" id="Ek3-KU-6ay"/>
+                                    <outlet property="delegate" destination="g1M-pZ-BJR" id="12C-gC-cRC"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxI-GU-4Hu" customClass="RegularButton" customModule="MealMate2" customModuleProvider="target">
+                                <rect key="frame" x="167" y="782" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Tcu-lW-RXw"/>
+                                    <constraint firstAttribute="height" constant="80" id="biv-ef-1e8"/>
+                                </constraints>
+                                <state key="normal" image="Add"/>
+                                <connections>
+                                    <action selector="addTapped:" destination="g1M-pZ-BJR" eventType="touchUpInside" id="AXW-LS-7qA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="er5-f2-BG9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HxI-GU-4Hu" firstAttribute="centerX" secondItem="cF9-rf-68a" secondAttribute="centerX" id="ABY-Lt-4Gw"/>
+                            <constraint firstItem="er5-f2-BG9" firstAttribute="bottom" secondItem="HxI-GU-4Hu" secondAttribute="bottom" id="cEY-uz-Nof"/>
+                            <constraint firstItem="pgV-QH-aZz" firstAttribute="top" secondItem="er5-f2-BG9" secondAttribute="top" id="guc-n5-156"/>
+                            <constraint firstAttribute="bottom" secondItem="pgV-QH-aZz" secondAttribute="bottom" id="m9X-Me-14e"/>
+                            <constraint firstItem="pgV-QH-aZz" firstAttribute="leading" secondItem="er5-f2-BG9" secondAttribute="leading" id="o5g-5b-mGM"/>
+                            <constraint firstItem="er5-f2-BG9" firstAttribute="trailing" secondItem="pgV-QH-aZz" secondAttribute="trailing" id="xqi-rn-bqB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="T9O-XC-Cz5"/>
+                    <connections>
+                        <outlet property="addButton" destination="HxI-GU-4Hu" id="Pzd-8E-04R"/>
+                        <outlet property="groceryTable" destination="pgV-QH-aZz" id="DgB-To-TkH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNw-OD-Q15" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60.869565217391312" y="87.723214285714278"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="q3y-V0-RuR">
+            <size key="intrinsicContentSize" width="68" height="23"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="Add" width="80" height="80"/>
+        <image name="Check" width="29" height="29"/>
+        <image name="Grip" width="30" height="26"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
