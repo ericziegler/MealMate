@@ -43,6 +43,8 @@ class InputView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        inputField.backgroundColor = UIColor.appMedium
+        inputField.styleField(textColor: UIColor.appDark, placeholderColor: UIColor.appMediumDark, cornerRadius: 8, font: inputField.font!)
     }
 
     // MARK: - Show / Hide Animations

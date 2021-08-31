@@ -82,9 +82,14 @@ class GroceryList {
         saveGroceries()
     }
 
-    func removeGroceryAt(index: Int) {
-        groceries.remove(at: index)
-        saveGroceries()
+    func removeGrocery(_ grocery: Grocery) {
+        for (index, curGrocery) in groceries.enumerated() {
+            if curGrocery.identifier == grocery.identifier {
+                groceries.remove(at: index)
+                saveGroceries()
+                break
+            }
+        }
     }
 
     func grocery(at index: Int) -> Grocery {

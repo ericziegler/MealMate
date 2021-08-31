@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AudioToolbox
 
 class MainController: BaseViewController, UITableViewDataSource, UITableViewDelegate, InputViewDelegate {
 
@@ -110,6 +112,43 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         bg.addConstraints([leadingConstraint, centerConstraint])
 
         return bg
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: title, handler: { [unowned self] (action, view, completionHandler) in
+            let category = GroceryCategory(rawValue: indexPath.section)!
+            let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
+            DispatchQueue.main.async {
+                self.groceryTable.beginUpdates()
+                grocery.isChecked = !grocery.isChecked
+                self.groceryList.saveGroceries()
+                self.groceryTable.reloadRows(at: [indexPath], with: .automatic)
+                self.groceryTable.endUpdates()
+                AudioServicesPlaySystemSound(1519)
+            }
+        })
+        action.backgroundColor = UIColor.appNavy
+        action.image = UIImage(systemName: "checkmark")
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        configuration.performsFirstActionWithFullSwipe = true
+        return configuration
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: title, handler: { [unowned self] (action, view, completionHandler) in
+            let category = GroceryCategory(rawValue: indexPath.section)!
+            let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
+            DispatchQueue.main.async {
+                self.groceryList.removeGrocery(grocery)
+                self.groceryTable.reloadData()
+                AudioServicesPlaySystemSound(1519)
+            }
+        })
+        action.backgroundColor = UIColor.systemRed
+        action.image = UIImage(systemName: "trash")
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        configuration.performsFirstActionWithFullSwipe = true
+        return configuration
     }
     
     // MARK: - InputViewDelegate
