@@ -125,6 +125,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
                 self.groceryTable.reloadRows(at: [indexPath], with: .automatic)
                 self.groceryTable.endUpdates()
                 AudioServicesPlaySystemSound(1519)
+                completionHandler(true)
             }
         })
         action.backgroundColor = UIColor.appNavy
@@ -142,6 +143,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
                 self.groceryList.removeGrocery(grocery)
                 self.groceryTable.reloadData()
                 AudioServicesPlaySystemSound(1519)
+                completionHandler(true)
             }
         })
         action.backgroundColor = UIColor.systemRed

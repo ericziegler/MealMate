@@ -33,7 +33,7 @@ class GroceryCell: UITableViewCell {
     func layoutFor(grocery: Grocery) {
         if grocery.isChecked == true {
             checkImageView.image = UIImage(named: "Check")?.maskedWithColor(UIColor.appLightDark)
-            nameLabel.textColor = UIColor.appDark
+            nameLabel.textColor = UIColor.appMediumDark
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: grocery.name)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
             nameLabel.attributedText = attributeString
