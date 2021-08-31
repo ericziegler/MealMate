@@ -101,10 +101,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxI-GU-4Hu" customClass="RegularButton" customModule="MealMate2" customModuleProvider="target">
-                                <rect key="frame" x="167" y="782" width="80" height="80"/>
+                                <rect key="frame" x="175" y="798" width="64" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="Tcu-lW-RXw"/>
-                                    <constraint firstAttribute="height" constant="80" id="biv-ef-1e8"/>
+                                    <constraint firstAttribute="width" constant="64" id="Tcu-lW-RXw"/>
+                                    <constraint firstAttribute="height" constant="64" id="biv-ef-1e8"/>
                                 </constraints>
                                 <state key="normal" image="Add"/>
                                 <connections>
@@ -136,7 +136,7 @@
     </scenes>
     <designables>
         <designable name="q3y-V0-RuR">
-            <size key="intrinsicContentSize" width="68" height="23"/>
+            <size key="intrinsicContentSize" width="67.5" height="23"/>
         </designable>
     </designables>
     <resources>

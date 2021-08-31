@@ -47,6 +47,7 @@
 		78AE18EA26DEA11F004E2A9A /* GroceryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18E926DEA11F004E2A9A /* GroceryCell.swift */; };
 		78AE18EC26DEB6D8004E2A9A /* GroceryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18EB26DEB6D8004E2A9A /* GroceryList.swift */; };
 		78AE18EE26DEB6DF004E2A9A /* Grocery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18ED26DEB6DF004E2A9A /* Grocery.swift */; };
+		78AE18F026DEBC72004E2A9A /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78AE18EF26DEBC72004E2A9A /* InputView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		78AE18E926DEA11F004E2A9A /* GroceryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCell.swift; sourceTree = "<group>"; };
 		78AE18EB26DEB6D8004E2A9A /* GroceryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryList.swift; sourceTree = "<group>"; };
 		78AE18ED26DEB6DF004E2A9A /* Grocery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grocery.swift; sourceTree = "<group>"; };
+		78AE18EF26DEBC72004E2A9A /* InputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 		78AE18E326DD7462004E2A9A /* InputView */ = {
 			isa = PBXGroup;
 			children = (
+				78AE18EF26DEBC72004E2A9A /* InputView.xib */,
 				78AE18E426DD7478004E2A9A /* InputView.swift */,
 			);
 			path = InputView;
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				785D4CBC26DD6792003FB0E1 /* LaunchScreen.storyboard in Resources */,
+				78AE18F026DEBC72004E2A9A /* InputView.xib in Resources */,
 				785D4CCB26DD67CC003FB0E1 /* Lato-Thin.ttf in Resources */,
 				785D4CB926DD6792003FB0E1 /* Assets.xcassets in Resources */,
 				785D4CCA26DD67CC003FB0E1 /* Lato-Regular.ttf in Resources */,

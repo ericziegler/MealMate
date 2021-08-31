@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="LZP-eQ-X62" customClass="InputView" customModule="MealMate2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grn-iB-KAP">
+                    <rect key="frame" x="52" y="124" width="310" height="250"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Mti-0N-VjF">
+                            <rect key="frame" x="8" y="63.5" width="294" height="32"/>
+                            <segments>
+                                <segment title="Breakfast"/>
+                                <segment title="Lunch"/>
+                                <segment title="Dinner"/>
+                                <segment title="General"/>
+                            </segments>
+                            <color key="selectedSegmentTintColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        </segmentedControl>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KYe-SV-wA5" customClass="AppTextField" customModule="MealMate2" customModuleProvider="target">
+                            <rect key="frame" x="8" y="124.5" width="294" height="44"/>
+                            <color key="backgroundColor" red="0.89411764705882346" green="0.90196078431372551" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Dws-x7-bIx"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Grocery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbU-tq-4c1" customClass="BoldLabel" customModule="MealMate2" customModuleProvider="target">
+                            <rect key="frame" x="95" y="22" width="120" height="26.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-aS-x87" customClass="BoldButton" customModule="MealMate2" customModuleProvider="target">
+                            <rect key="frame" x="8" y="198" width="130" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="130" id="8zG-Pj-pVM"/>
+                                <constraint firstAttribute="height" constant="44" id="9xI-M1-RyV"/>
+                            </constraints>
+                            <state key="normal" title="CANCEL">
+                                <color key="titleColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelTapped:" destination="LZP-eQ-X62" eventType="touchUpInside" id="P3c-VU-zy0"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0J-sg-sGl" customClass="BoldButton" customModule="MealMate2" customModuleProvider="target">
+                            <rect key="frame" x="172" y="198" width="130" height="44"/>
+                            <state key="normal" title="ADD">
+                                <color key="titleColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="addTapped:" destination="LZP-eQ-X62" eventType="touchUpInside" id="TgP-oL-Opl"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="310" id="33K-JP-SFa"/>
+                        <constraint firstItem="Mti-0N-VjF" firstAttribute="leading" secondItem="grn-iB-KAP" secondAttribute="leading" constant="8" id="4nH-Ib-01R"/>
+                        <constraint firstAttribute="trailing" secondItem="Mti-0N-VjF" secondAttribute="trailing" constant="8" id="79Z-39-NGx"/>
+                        <constraint firstItem="u0J-sg-sGl" firstAttribute="width" secondItem="Wlr-aS-x87" secondAttribute="width" id="AQD-Cw-XKa"/>
+                        <constraint firstItem="u0J-sg-sGl" firstAttribute="height" secondItem="Wlr-aS-x87" secondAttribute="height" id="DRU-wB-IsR"/>
+                        <constraint firstItem="LbU-tq-4c1" firstAttribute="centerX" secondItem="grn-iB-KAP" secondAttribute="centerX" id="Hbc-8h-dJx"/>
+                        <constraint firstItem="Mti-0N-VjF" firstAttribute="top" secondItem="LbU-tq-4c1" secondAttribute="bottom" constant="15" id="LLd-o5-tyM"/>
+                        <constraint firstItem="u0J-sg-sGl" firstAttribute="centerY" secondItem="Wlr-aS-x87" secondAttribute="centerY" id="Veg-6B-7di"/>
+                        <constraint firstItem="Wlr-aS-x87" firstAttribute="leading" secondItem="KYe-SV-wA5" secondAttribute="leading" id="Vvf-ew-Riv"/>
+                        <constraint firstAttribute="height" constant="250" id="hgH-JW-vpT"/>
+                        <constraint firstItem="LbU-tq-4c1" firstAttribute="top" secondItem="grn-iB-KAP" secondAttribute="top" constant="22" id="ihH-gb-EE8"/>
+                        <constraint firstItem="KYe-SV-wA5" firstAttribute="top" secondItem="Mti-0N-VjF" secondAttribute="bottom" constant="30" id="kyC-mn-MhF"/>
+                        <constraint firstItem="KYe-SV-wA5" firstAttribute="trailing" secondItem="Mti-0N-VjF" secondAttribute="trailing" id="qWi-Hg-oi7"/>
+                        <constraint firstAttribute="bottom" secondItem="Wlr-aS-x87" secondAttribute="bottom" constant="8" id="tox-NE-C1s"/>
+                        <constraint firstItem="u0J-sg-sGl" firstAttribute="trailing" secondItem="KYe-SV-wA5" secondAttribute="trailing" id="uMn-by-Gw7"/>
+                        <constraint firstItem="KYe-SV-wA5" firstAttribute="leading" secondItem="Mti-0N-VjF" secondAttribute="leading" id="vC5-7P-6v1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="teO-oR-Q3x"/>
+            <color key="backgroundColor" white="0.5" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="grn-iB-KAP" firstAttribute="top" secondItem="teO-oR-Q3x" secondAttribute="top" constant="80" id="5dE-hd-RZv"/>
+                <constraint firstItem="grn-iB-KAP" firstAttribute="centerX" secondItem="LZP-eQ-X62" secondAttribute="centerX" id="JYM-Lc-N0J"/>
+            </constraints>
+            <connections>
+                <outlet property="addButton" destination="u0J-sg-sGl" id="C3r-Jx-Z38"/>
+                <outlet property="bgView" destination="grn-iB-KAP" id="yw3-3z-CXg"/>
+                <outlet property="cancelButton" destination="Wlr-aS-x87" id="gsB-R4-iId"/>
+                <outlet property="inputField" destination="KYe-SV-wA5" id="czL-F2-GAW"/>
+                <outlet property="inputSegments" destination="Mti-0N-VjF" id="clF-Rl-xte"/>
+                <outlet property="titleLabel" destination="LbU-tq-4c1" id="BVm-f5-HIe"/>
+            </connections>
+            <point key="canvasLocation" x="13.043478260869566" y="144.64285714285714"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="Wlr-aS-x87">
+            <size key="intrinsicContentSize" width="71" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

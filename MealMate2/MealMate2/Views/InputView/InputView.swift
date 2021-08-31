@@ -7,59 +7,94 @@
 
 import UIKit
 
+// MARK: - Protocols
+
+protocol InputViewDelegate {
+    func groceryAdded(_ grocery: Grocery, forInputView inputView: InputView)
+    func groceryUpdated(_ grocery: Grocery, indexPath: IndexPath, forInputView inputView: InputView)
+    func inputViewCancelled(_ inputView: InputView)
+}
+
 class InputView: UIView {
- 
+    
     // MARK: - Properties
     
-    private var inputField: AppTextField!
-    private var inputButton: MediumButton!
+    @IBOutlet var bgView: UIView!
+    @IBOutlet var titleLabel: BoldLabel!
+    @IBOutlet var inputSegments: UISegmentedControl!
+    @IBOutlet var inputField: AppTextField!
+    @IBOutlet var addButton: BoldButton!
+    @IBOutlet var cancelButton: BoldButton!
+    
+    private var grocery: Grocery?
+    private var indexPath: IndexPath?
+    private var delegate: InputViewDelegate?
     
     // MARK: - Init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
+    static func createInputFor(parentController: UIViewController, grocery: Grocery?, indexPath: IndexPath?, delegate: InputViewDelegate?) -> InputView {
+        let input: InputView = UIView.fromNib()
+        input.fillInParentView(parentView: parentController.view)
+        input.grocery = grocery
+        input.indexPath = indexPath
+        input.delegate = delegate
+        return input
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    // MARK: - Show / Hide Animations
+    
+    func showInput() {
+        bgView.layer.cornerRadius = 8
+        if let grocery = grocery {
+            titleLabel.text = "Update Grocery"
+            inputSegments.selectedSegmentIndex = grocery.category.rawValue
+            inputField.text = grocery.name
+            addButton.setTitle("UPDATE", for: .normal)
+        } else {
+            titleLabel.text = "Add Grocery"
+            addButton.setTitle("ADD", for: .normal)
+        }
+        
+        self.alpha = 0
+        UIView.animate(withDuration: 0.15) {
+            self.alpha = 1
+        }
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
+    func hideInput() {
+        UIView.animate(withDuration: 0.15, animations: {
+            self.alpha = 0
+        }) { didFinish in
+            self.removeFromSuperview()
+        }
     }
     
-    private func commonInit() {
-        createAndAddInputButton()
-        createAndAddInputField()
+    // MARK: - Actions
+    
+    @IBAction func addTapped(_ sender: AnyObject) {
+        var isUpdate = true
+        if grocery == nil {
+            grocery = Grocery()
+            isUpdate = false
+        }
+        grocery!.name = inputField.text ?? ""
+        grocery!.category = GroceryCategory(rawValue: inputSegments.selectedSegmentIndex)!
+        
+        if isUpdate == true {
+            if let indexPath = self.indexPath {
+                delegate?.groceryUpdated(grocery!, indexPath: indexPath, forInputView: self)
+            }
+        } else {
+            delegate?.groceryAdded(grocery!, forInputView: self)
+        }
     }
     
-    private func createAndAddInputButton() {
-        inputButton = MediumButton(type: .custom)
-        inputButton.backgroundColor = UIColor.clear
-        inputButton.layer.borderWidth = 1.5
-        inputButton.layer.borderColor = UIColor.appRed.cgColor
-        inputButton.clipsToBounds = true
-        inputButton.layer.cornerRadius = 8
-        inputButton.setTitle("Add", for: .normal)
-        inputButton.setTitleColor(UIColor.appRed, for: .normal)
-        self.addSubview(inputButton)
-        inputButton.translatesAutoresizingMaskIntoConstraints = false
-        inputButton.addConstraint(NSLayoutConstraint(item: inputButton as Any, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
-        inputButton.addConstraint(NSLayoutConstraint(item: inputButton as Any, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 90))
-        self.addConstraint(NSLayoutConstraint(item: inputButton as Any, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 12))
-        self.addConstraint(NSLayoutConstraint(item: inputButton as Any, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -8))
-        self.addConstraint(NSLayoutConstraint(item: inputButton as Any, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -12))
-    }
-    
-    private func createAndAddInputField() {
-        inputField = AppTextField(frame: .zero)
-        inputField.placeholder = "Add item"
-        inputField.backgroundColor = UIColor.appMedium
-        inputField.styleField(textColor: UIColor.appDark, placeholderColor: UIColor.darkGray, cornerRadius: 8, font: UIFont.appMediumFontOfSize(18))
-        self.addSubview(inputField)
-        inputField.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: inputField as Any, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 12))
-        self.addConstraint(NSLayoutConstraint(item: inputField as Any, attribute: .trailing, relatedBy: .equal, toItem: inputButton, attribute: .leading, multiplier: 1, constant: -12))
-        self.addConstraint(NSLayoutConstraint(item: inputField as Any, attribute: .height, relatedBy: .equal, toItem: inputButton, attribute: .height, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: inputField as Any, attribute: .centerY, relatedBy: .equal, toItem: inputButton, attribute: .centerY, multiplier: 1, constant: 0))
+    @IBAction func cancelTapped(_ sender: AnyObject) {
+        delegate?.inputViewCancelled(self)
     }
     
 }
