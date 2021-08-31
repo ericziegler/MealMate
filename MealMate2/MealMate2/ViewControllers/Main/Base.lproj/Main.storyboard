@@ -71,6 +71,12 @@
                                                         <constraint firstAttribute="height" constant="1" id="cG5-hf-1E5"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twU-1I-YiC" userLabel="CheckButton" customClass="RegularButton" customModule="MealMate2" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="58"/>
+                                                    <connections>
+                                                        <action selector="checkTapped:" destination="X7K-LU-uVN" eventType="touchUpInside" id="93x-1Y-u0H"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -79,8 +85,12 @@
                                                 <constraint firstItem="QJ2-Sq-oPk" firstAttribute="leading" secondItem="q3y-V0-RuR" secondAttribute="trailing" constant="12" id="Fs9-58-r8z"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZPB-xC-XB7" secondAttribute="bottom" id="JSQ-Jw-7Qt"/>
                                                 <constraint firstItem="AGi-ts-Ems" firstAttribute="top" secondItem="q3y-V0-RuR" secondAttribute="top" constant="5" id="Me6-dL-5We"/>
+                                                <constraint firstItem="q3y-V0-RuR" firstAttribute="leading" secondItem="twU-1I-YiC" secondAttribute="trailing" constant="5" id="N2W-db-JY4"/>
                                                 <constraint firstItem="q3y-V0-RuR" firstAttribute="leading" secondItem="AGi-ts-Ems" secondAttribute="trailing" constant="12" id="U8j-6o-POT"/>
+                                                <constraint firstItem="ZPB-xC-XB7" firstAttribute="top" secondItem="twU-1I-YiC" secondAttribute="bottom" id="VqY-AH-sy0"/>
                                                 <constraint firstAttribute="bottom" secondItem="q3y-V0-RuR" secondAttribute="bottom" constant="18" id="Zfc-kk-CGu"/>
+                                                <constraint firstItem="twU-1I-YiC" firstAttribute="top" secondItem="iPE-Eq-hut" secondAttribute="top" id="dEU-RA-ctm"/>
+                                                <constraint firstItem="twU-1I-YiC" firstAttribute="leading" secondItem="iPE-Eq-hut" secondAttribute="leading" id="eHJ-f4-v6C"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZPB-xC-XB7" secondAttribute="trailing" id="i3a-6r-azS"/>
                                                 <constraint firstItem="ZPB-xC-XB7" firstAttribute="leading" secondItem="iPE-Eq-hut" secondAttribute="leading" id="lGY-LA-YbG"/>
                                                 <constraint firstItem="AGi-ts-Ems" firstAttribute="leading" secondItem="iPE-Eq-hut" secondAttribute="leading" constant="15" id="nPb-aZ-KWX"/>

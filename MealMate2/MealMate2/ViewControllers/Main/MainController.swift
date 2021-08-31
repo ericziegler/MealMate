@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import AudioToolbox
 
-class MainController: BaseViewController, UITableViewDataSource, UITableViewDelegate, InputViewDelegate {
+class MainController: BaseViewController, UITableViewDataSource, UITableViewDelegate, InputViewDelegate, GroceryCellDelegate {
 
     // MARK: - Properties
     
@@ -46,6 +46,35 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
+    // MARK: - Helpers
+    
+    private func groceryAt(indexPath: IndexPath) -> Grocery {
+        let category = GroceryCategory(rawValue: indexPath.section)!
+        let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
+        return grocery
+    }
+    
+    private func toggleCheckedAt(indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            let grocery = self.groceryAt(indexPath: indexPath)
+            self.groceryTable.beginUpdates()
+            grocery.isChecked = !grocery.isChecked
+            self.groceryList.saveGroceries()
+            self.groceryTable.reloadRows(at: [indexPath], with: .automatic)
+            self.groceryTable.endUpdates()
+            AudioServicesPlaySystemSound(1519)
+        }
+    }
+    
+    private func deleteAt(indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            let grocery = self.groceryAt(indexPath: indexPath)
+            self.groceryList.removeGrocery(grocery)
+            self.groceryTable.reloadData()
+            AudioServicesPlaySystemSound(1519)
+        }
+    }
+    
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,17 +88,16 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GroceryCell.reuseId, for: indexPath) as! GroceryCell
-        let category = GroceryCategory(rawValue: indexPath.section)!
-        let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
+        let grocery = groceryAt(indexPath: indexPath)
         cell.layoutFor(grocery: grocery)
+        cell.delegate = self
         return cell
     }
     
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let category = GroceryCategory(rawValue: indexPath.section)!
-        let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
+        let grocery = groceryAt(indexPath: indexPath)
         DispatchQueue.main.async {
             self.modalInput = InputView.createInputFor(parentController: self, grocery: grocery, indexPath: indexPath, delegate: self)
             self.modalInput?.showInput()
@@ -116,15 +144,8 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: title, handler: { [unowned self] (action, view, completionHandler) in
-            let category = GroceryCategory(rawValue: indexPath.section)!
-            let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
             DispatchQueue.main.async {
-                self.groceryTable.beginUpdates()
-                grocery.isChecked = !grocery.isChecked
-                self.groceryList.saveGroceries()
-                self.groceryTable.reloadRows(at: [indexPath], with: .automatic)
-                self.groceryTable.endUpdates()
-                AudioServicesPlaySystemSound(1519)
+                self.toggleCheckedAt(indexPath: indexPath)
                 completionHandler(true)
             }
         })
@@ -137,12 +158,8 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: title, handler: { [unowned self] (action, view, completionHandler) in
-            let category = GroceryCategory(rawValue: indexPath.section)!
-            let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
             DispatchQueue.main.async {
-                self.groceryList.removeGrocery(grocery)
-                self.groceryTable.reloadData()
-                AudioServicesPlaySystemSound(1519)
+                self.deleteAt(indexPath: indexPath)
                 completionHandler(true)
             }
         })
@@ -178,6 +195,15 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     func inputViewCancelled(_ inputView: InputView) {
         inputView.hideInput()
+    }
+    
+    // MARK: - GroceryCellDelegate
+    
+    func checkTappedFor(cell: GroceryCell) {
+        guard let indexPath = self.groceryTable.indexPath(for: cell) else {
+            return
+        }
+        toggleCheckedAt(indexPath: indexPath)
     }
     
 }

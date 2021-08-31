@@ -7,6 +7,12 @@
 
 import UIKit
 
+// MARK: - Protocols
+
+protocol GroceryCellDelegate {
+    func checkTappedFor(cell: GroceryCell)
+}
+
 class GroceryCell: UITableViewCell {
  
     // MARK: - Properties
@@ -16,6 +22,8 @@ class GroceryCell: UITableViewCell {
     @IBOutlet var checkImageView: UIImageView!
     @IBOutlet var nameLabel: RegularLabel!
     @IBOutlet var gripImageView: UIImageView!
+    
+    var delegate: GroceryCellDelegate?
     
     // MARK: - Init
     
@@ -44,6 +52,12 @@ class GroceryCell: UITableViewCell {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
             nameLabel.attributedText = attributeString
         }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func checkTapped(_ sender: AnyObject) {
+        delegate?.checkTappedFor(cell: self)
     }
     
 }
