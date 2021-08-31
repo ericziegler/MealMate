@@ -74,6 +74,44 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let category = GroceryCategory(rawValue: section)!
+        if groceryList.groceriesForCategory(category).count > 0 {
+            return 55
+        }
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let category = GroceryCategory(rawValue: section)!
+
+        let bg = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
+        bg.backgroundColor = UIColor.appMedium
+
+        let icon = UIImageView(image: UIImage(named: category.displayName)?.maskedWithColor(UIColor.appMediumDark))
+        icon.contentMode = .scaleAspectFit
+        bg.addSubview(icon)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        var leadingConstraint = NSLayoutConstraint(item: icon, attribute: .leading, relatedBy: .equal, toItem: bg, attribute: .leading, multiplier: 1, constant: 15)
+        var centerConstraint = NSLayoutConstraint(item: icon, attribute: .centerY, relatedBy: .equal, toItem: bg, attribute: .centerY, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: icon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 22)
+        let heightConstraint = NSLayoutConstraint(item: icon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 22)
+        bg.addConstraints([leadingConstraint, centerConstraint, widthConstraint, heightConstraint])
+
+        let nameLabel = BoldLabel(frame: .zero)
+        nameLabel.text = category.displayName
+        nameLabel.textColor = UIColor.appMediumDark
+        nameLabel.backgroundColor = UIColor.clear
+        nameLabel.font = UIFont.appBoldFontOfSize(24)
+        bg.addSubview(nameLabel)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        leadingConstraint = NSLayoutConstraint(item: nameLabel, attribute: .leading, relatedBy: .equal, toItem: icon, attribute: .trailing, multiplier: 1, constant: 10)
+        centerConstraint = NSLayoutConstraint(item: nameLabel, attribute: .centerY, relatedBy: .equal, toItem: icon, attribute: .centerY, multiplier: 1, constant: 0)
+        bg.addConstraints([leadingConstraint, centerConstraint])
+
+        return bg
+    }
+    
     // MARK: - InputViewDelegate
     
     func groceryAdded(_ grocery: Grocery, forInputView inputView: InputView) {
@@ -87,7 +125,12 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     func groceryUpdated(_ grocery: Grocery, indexPath: IndexPath, forInputView inputView: InputView) {
         inputView.hideInput()
         DispatchQueue.main.async {
-            self.groceryTable.reloadRows(at: [indexPath], with: .none)
+            // if the section has not changed, just reload the row. if it has, reload the entire table.
+            if indexPath.section == grocery.category.rawValue {
+                self.groceryTable.reloadRows(at: [indexPath], with: .none)
+            } else {
+                self.groceryTable.reloadData()
+            }
             inputView.hideInput()
         }
     }

@@ -14,8 +14,12 @@ extension UIColor {
         return UIColor(hex: 0xe4e6e1)
     }
     
-    class var appMediumDark: UIColor {
+    class var appLightDark: UIColor {
         return UIColor(hex: 0xc1c2bd)
+    }
+    
+    class var appMediumDark: UIColor {
+        return UIColor(hex: 0x7b7c79)
     }
     
     class var appDark: UIColor {

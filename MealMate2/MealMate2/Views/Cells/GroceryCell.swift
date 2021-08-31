@@ -25,20 +25,20 @@ class GroceryCell: UITableViewCell {
     }
     
     private func styleUI() {
-        gripImageView.image = gripImageView.image?.maskedWithColor(UIColor.appMediumDark)
+        gripImageView.image = gripImageView.image?.maskedWithColor(UIColor.appLightDark)
     }
     
     // MARK: - Layout
     
     func layoutFor(grocery: Grocery) {
         if grocery.isChecked == true {
-            checkImageView.image = UIImage(named: "Check")?.maskedWithColor(UIColor.appMediumDark)
-            nameLabel.textColor = UIColor.appMediumDark
+            checkImageView.image = UIImage(named: "Check")?.maskedWithColor(UIColor.appLightDark)
+            nameLabel.textColor = UIColor.appLightDark
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: grocery.name)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
             nameLabel.attributedText = attributeString
         } else {
-            checkImageView.image = UIImage(named: "Uncheck")?.maskedWithColor(UIColor.appMediumDark)
+            checkImageView.image = UIImage(named: "Uncheck")?.maskedWithColor(UIColor.appLightDark)
             nameLabel.textColor = UIColor.appDark
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: grocery.name)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
