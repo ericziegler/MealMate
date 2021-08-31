@@ -16,6 +16,8 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet var groceryTable: UITableView!
     @IBOutlet var addButton: RegularButton!
     
+    private let groceryList = GroceryList.shared
+    
     // MARK: - Init
     
     override func viewDidLoad() {
@@ -41,15 +43,19 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 25
+        let category = GroceryCategory(rawValue: section)!
+        return groceryList.groceriesForCategory(category).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GroceryCell.reuseId, for: indexPath) as! GroceryCell
+        let category = GroceryCategory(rawValue: indexPath.section)!
+        let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
+        cell.layoutFor(grocery: grocery)
         return cell
     }
     

@@ -45,6 +45,8 @@
 		78AE18E526DD7478004E2A9A /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18E426DD7478004E2A9A /* InputView.swift */; };
 		78AE18E726DD7B47004E2A9A /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18E626DD7B47004E2A9A /* UIViewControllerExtensions.swift */; };
 		78AE18EA26DEA11F004E2A9A /* GroceryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18E926DEA11F004E2A9A /* GroceryCell.swift */; };
+		78AE18EC26DEB6D8004E2A9A /* GroceryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18EB26DEB6D8004E2A9A /* GroceryList.swift */; };
+		78AE18EE26DEB6DF004E2A9A /* Grocery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18ED26DEB6DF004E2A9A /* Grocery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		78AE18E426DD7478004E2A9A /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		78AE18E626DD7B47004E2A9A /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		78AE18E926DEA11F004E2A9A /* GroceryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCell.swift; sourceTree = "<group>"; };
+		78AE18EB26DEB6D8004E2A9A /* GroceryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryList.swift; sourceTree = "<group>"; };
+		78AE18ED26DEB6DF004E2A9A /* Grocery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grocery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,8 @@
 		785D4CCF26DD6878003FB0E1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				78AE18EB26DEB6D8004E2A9A /* GroceryList.swift */,
+				78AE18ED26DEB6DF004E2A9A /* Grocery.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				785D4CEB26DD6933003FB0E1 /* UIViewExtensions.swift in Sources */,
 				785D4CE926DD6933003FB0E1 /* UIImageExtensions.swift in Sources */,
 				785D4D0326DD698C003FB0E1 /* TextFieldComponents.swift in Sources */,
+				78AE18EC26DEB6D8004E2A9A /* GroceryList.swift in Sources */,
 				785D4CEE26DD6933003FB0E1 /* UISegmentedControlExtensions.swift in Sources */,
 				785D4CEC26DD6933003FB0E1 /* UIFontExtensions.swift in Sources */,
 				785D4D0426DD698C003FB0E1 /* ColorComponents.swift in Sources */,
@@ -379,6 +386,7 @@
 				785D4CEF26DD6933003FB0E1 /* UICollectionViewExtensions.swift in Sources */,
 				785D4CB026DD6792003FB0E1 /* AppDelegate.swift in Sources */,
 				785D4CDC26DD68F9003FB0E1 /* AppUtilities.swift in Sources */,
+				78AE18EE26DEB6DF004E2A9A /* Grocery.swift in Sources */,
 				785D4CF726DD6966003FB0E1 /* URLExtensions.swift in Sources */,
 				78AE18E726DD7B47004E2A9A /* UIViewControllerExtensions.swift in Sources */,
 				785D4CF026DD6933003FB0E1 /* UITextFieldExtensions.swift in Sources */,
