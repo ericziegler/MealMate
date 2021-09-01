@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grn-iB-KAP">
-                    <rect key="frame" x="52" y="124" width="310" height="240"/>
+                    <rect key="frame" x="49.5" y="124" width="315" height="230"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Mti-0N-VjF">
-                            <rect key="frame" x="8" y="63.5" width="294" height="32"/>
+                            <rect key="frame" x="12" y="63.5" width="291" height="32"/>
                             <segments>
                                 <segment title="Breakfast"/>
                                 <segment title="Lunch"/>
@@ -29,7 +29,7 @@
                             <color key="selectedSegmentTintColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                         </segmentedControl>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KYe-SV-wA5" customClass="AppTextField" customModule="MealMate2" customModuleProvider="target">
-                            <rect key="frame" x="8" y="124.5" width="294" height="40"/>
+                            <rect key="frame" x="12" y="114.5" width="291" height="40"/>
                             <color key="backgroundColor" red="0.89411764705882346" green="0.90196078431372551" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Dws-x7-bIx"/>
@@ -38,16 +38,25 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Grocery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbU-tq-4c1" customClass="BoldLabel" customModule="MealMate2" customModuleProvider="target">
-                            <rect key="frame" x="95" y="22" width="120" height="26.5"/>
+                            <rect key="frame" x="97.5" y="22" width="120" height="26.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0J-sg-sGl" customClass="BoldButton" customModule="MealMate2" customModuleProvider="target">
+                            <rect key="frame" x="173" y="186" width="130" height="36"/>
+                            <state key="normal" title="ADD">
+                                <color key="titleColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="addTapped:" destination="LZP-eQ-X62" eventType="touchUpInside" id="TgP-oL-Opl"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-aS-x87" customClass="BoldButton" customModule="MealMate2" customModuleProvider="target">
-                            <rect key="frame" x="8" y="188" width="130" height="44"/>
+                            <rect key="frame" x="12" y="186" width="130" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="130" id="8zG-Pj-pVM"/>
-                                <constraint firstAttribute="height" constant="44" id="9xI-M1-RyV"/>
+                                <constraint firstAttribute="height" constant="36" id="9xI-M1-RyV"/>
                             </constraints>
                             <state key="normal" title="CANCEL">
                                 <color key="titleColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,34 +65,45 @@
                                 <action selector="cancelTapped:" destination="LZP-eQ-X62" eventType="touchUpInside" id="P3c-VU-zy0"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0J-sg-sGl" customClass="BoldButton" customModule="MealMate2" customModuleProvider="target">
-                            <rect key="frame" x="172" y="188" width="130" height="44"/>
-                            <state key="normal" title="ADD">
-                                <color key="titleColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="addTapped:" destination="LZP-eQ-X62" eventType="touchUpInside" id="TgP-oL-Opl"/>
-                            </connections>
-                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flb-s7-aUe">
+                            <rect key="frame" x="0.0" y="174.5" width="315" height="1"/>
+                            <color key="backgroundColor" red="0.89411764705882346" green="0.90196078431372551" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="9EL-vy-SjL"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tal-6c-IqR">
+                            <rect key="frame" x="157" y="175.5" width="1" height="54.5"/>
+                            <color key="backgroundColor" red="0.89411764709999997" green="0.90196078430000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="lvd-Ig-APe"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="310" id="33K-JP-SFa"/>
-                        <constraint firstItem="Mti-0N-VjF" firstAttribute="leading" secondItem="grn-iB-KAP" secondAttribute="leading" constant="8" id="4nH-Ib-01R"/>
-                        <constraint firstAttribute="trailing" secondItem="Mti-0N-VjF" secondAttribute="trailing" constant="8" id="79Z-39-NGx"/>
+                        <constraint firstAttribute="width" constant="315" id="33K-JP-SFa"/>
+                        <constraint firstItem="Mti-0N-VjF" firstAttribute="leading" secondItem="grn-iB-KAP" secondAttribute="leading" constant="12" id="4nH-Ib-01R"/>
+                        <constraint firstAttribute="trailing" secondItem="Mti-0N-VjF" secondAttribute="trailing" constant="12" id="79Z-39-NGx"/>
                         <constraint firstItem="u0J-sg-sGl" firstAttribute="width" secondItem="Wlr-aS-x87" secondAttribute="width" id="AQD-Cw-XKa"/>
                         <constraint firstItem="u0J-sg-sGl" firstAttribute="height" secondItem="Wlr-aS-x87" secondAttribute="height" id="DRU-wB-IsR"/>
                         <constraint firstItem="LbU-tq-4c1" firstAttribute="centerX" secondItem="grn-iB-KAP" secondAttribute="centerX" id="Hbc-8h-dJx"/>
                         <constraint firstItem="Mti-0N-VjF" firstAttribute="top" secondItem="LbU-tq-4c1" secondAttribute="bottom" constant="15" id="LLd-o5-tyM"/>
                         <constraint firstItem="u0J-sg-sGl" firstAttribute="centerY" secondItem="Wlr-aS-x87" secondAttribute="centerY" id="Veg-6B-7di"/>
                         <constraint firstItem="Wlr-aS-x87" firstAttribute="leading" secondItem="KYe-SV-wA5" secondAttribute="leading" id="Vvf-ew-Riv"/>
-                        <constraint firstAttribute="height" constant="240" id="hgH-JW-vpT"/>
+                        <constraint firstAttribute="trailing" secondItem="flb-s7-aUe" secondAttribute="trailing" id="VyN-9I-FFA"/>
+                        <constraint firstItem="flb-s7-aUe" firstAttribute="top" secondItem="KYe-SV-wA5" secondAttribute="bottom" constant="20" id="cMO-v4-DNW"/>
+                        <constraint firstItem="tal-6c-IqR" firstAttribute="top" secondItem="flb-s7-aUe" secondAttribute="bottom" id="d0X-OE-5O0"/>
+                        <constraint firstAttribute="bottom" secondItem="tal-6c-IqR" secondAttribute="bottom" id="fPF-cc-V5U"/>
+                        <constraint firstAttribute="height" constant="230" id="hgH-JW-vpT"/>
                         <constraint firstItem="LbU-tq-4c1" firstAttribute="top" secondItem="grn-iB-KAP" secondAttribute="top" constant="22" id="ihH-gb-EE8"/>
-                        <constraint firstItem="KYe-SV-wA5" firstAttribute="top" secondItem="Mti-0N-VjF" secondAttribute="bottom" constant="30" id="kyC-mn-MhF"/>
+                        <constraint firstItem="KYe-SV-wA5" firstAttribute="top" secondItem="Mti-0N-VjF" secondAttribute="bottom" constant="20" id="kyC-mn-MhF"/>
+                        <constraint firstItem="tal-6c-IqR" firstAttribute="centerX" secondItem="grn-iB-KAP" secondAttribute="centerX" id="pZT-ft-w0x"/>
                         <constraint firstItem="KYe-SV-wA5" firstAttribute="trailing" secondItem="Mti-0N-VjF" secondAttribute="trailing" id="qWi-Hg-oi7"/>
                         <constraint firstAttribute="bottom" secondItem="Wlr-aS-x87" secondAttribute="bottom" constant="8" id="tox-NE-C1s"/>
                         <constraint firstItem="u0J-sg-sGl" firstAttribute="trailing" secondItem="KYe-SV-wA5" secondAttribute="trailing" id="uMn-by-Gw7"/>
                         <constraint firstItem="KYe-SV-wA5" firstAttribute="leading" secondItem="Mti-0N-VjF" secondAttribute="leading" id="vC5-7P-6v1"/>
+                        <constraint firstItem="flb-s7-aUe" firstAttribute="leading" secondItem="grn-iB-KAP" secondAttribute="leading" id="wNs-Ys-FiP"/>
                     </constraints>
                 </view>
             </subviews>
