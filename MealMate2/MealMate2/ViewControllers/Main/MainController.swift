@@ -213,7 +213,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
                 completionHandler(true)
             }
         })
-        action.backgroundColor = UIColor.appNavy
+        action.backgroundColor = UIColor.appBlue
         action.image = UIImage(systemName: "checkmark")
         let configuration = UISwipeActionsConfiguration(actions: [action])
         configuration.performsFirstActionWithFullSwipe = true

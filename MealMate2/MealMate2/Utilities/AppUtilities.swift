@@ -18,7 +18,7 @@ var appBuild: String? {
 
 func applyApplicationAppearanceProperties() {
     UINavigationBar.appearance().tintColor = UIColor.appLight
-    UINavigationBar.appearance().barTintColor = UIColor.appBlue
+    UINavigationBar.appearance().barTintColor = UIColor.appRed
     UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appDark]
     UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.appMediumFontOfSize(11)], for: .normal)
     UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.appDark], for: .normal)
