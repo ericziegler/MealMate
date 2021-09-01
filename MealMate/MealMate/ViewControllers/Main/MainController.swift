@@ -60,7 +60,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     private func setupTable() {
-        groceryTable.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
+        groceryTable.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 84, right: 0)
     }
     
     // MARK: - Actions

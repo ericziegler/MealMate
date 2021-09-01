@@ -111,7 +111,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkY-Yy-62V" customClass="RegularButton" customModule="MealMate" customModuleProvider="target">
-                                <rect key="frame" x="175" y="798" width="64" height="64"/>
+                                <rect key="frame" x="175" y="783" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Xpk-m3-BJ8"/>
                                     <constraint firstAttribute="width" constant="64" id="bHB-u1-Q8b"/>
@@ -130,7 +130,7 @@
                             <constraint firstAttribute="bottom" secondItem="HnE-9Z-TeH" secondAttribute="bottom" id="B8Z-c5-DXy"/>
                             <constraint firstItem="wkY-Yy-62V" firstAttribute="centerX" secondItem="Jsw-2P-VSv" secondAttribute="centerX" id="UXk-Rc-m5y"/>
                             <constraint firstItem="tdN-SJ-WJa" firstAttribute="trailing" secondItem="HnE-9Z-TeH" secondAttribute="trailing" id="Vjq-zq-PqC"/>
-                            <constraint firstItem="tdN-SJ-WJa" firstAttribute="bottom" secondItem="wkY-Yy-62V" secondAttribute="bottom" id="mOu-gT-YiZ"/>
+                            <constraint firstItem="tdN-SJ-WJa" firstAttribute="bottom" secondItem="wkY-Yy-62V" secondAttribute="bottom" constant="15" id="mOu-gT-YiZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2Ii-kG-ZVR"/>
