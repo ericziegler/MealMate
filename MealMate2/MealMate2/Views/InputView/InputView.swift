@@ -15,7 +15,7 @@ protocol InputViewDelegate {
     func inputViewCancelled(_ inputView: InputView)
 }
 
-class InputView: UIView {
+class InputView: UIView, UITextFieldDelegate {
     
     // MARK: - Properties
     
@@ -75,9 +75,9 @@ class InputView: UIView {
         }
     }
     
-    // MARK: - Actions
+    // MARK: - Helpers
     
-    @IBAction func addTapped(_ sender: AnyObject) {
+    private func handleConfirmTapped() {
         var isUpdate = true
         if grocery == nil {
             grocery = Grocery()
@@ -95,8 +95,21 @@ class InputView: UIView {
         }
     }
     
+    // MARK: - Actions
+    
+    @IBAction func addTapped(_ sender: AnyObject) {
+        handleConfirmTapped()
+    }
+    
     @IBAction func cancelTapped(_ sender: AnyObject) {
         delegate?.inputViewCancelled(self)
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        handleConfirmTapped()
+        return true
     }
     
 }

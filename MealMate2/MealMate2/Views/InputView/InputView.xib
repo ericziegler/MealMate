@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="LZP-eQ-X62" customClass="InputView" customModule="MealMate2" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="LZP-eQ-X62" customClass="InputView" customModule="MealMate" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -28,22 +28,25 @@
                             </segments>
                             <color key="selectedSegmentTintColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                         </segmentedControl>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KYe-SV-wA5" customClass="AppTextField" customModule="MealMate2" customModuleProvider="target">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KYe-SV-wA5" customClass="AppTextField" customModule="MealMate" customModuleProvider="target">
                             <rect key="frame" x="12" y="114.5" width="291" height="40"/>
                             <color key="backgroundColor" red="0.89411764705882346" green="0.90196078431372551" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Dws-x7-bIx"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="LZP-eQ-X62" id="dat-VT-IN6"/>
+                            </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Grocery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbU-tq-4c1" customClass="BoldLabel" customModule="MealMate2" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Grocery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbU-tq-4c1" customClass="BoldLabel" customModule="MealMate" customModuleProvider="target">
                             <rect key="frame" x="97.5" y="22" width="120" height="26.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0J-sg-sGl" customClass="BoldButton" customModule="MealMate2" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0J-sg-sGl" customClass="BoldButton" customModule="MealMate" customModuleProvider="target">
                             <rect key="frame" x="173" y="186" width="130" height="36"/>
                             <state key="normal" title="ADD">
                                 <color key="titleColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,7 +55,7 @@
                                 <action selector="addTapped:" destination="LZP-eQ-X62" eventType="touchUpInside" id="TgP-oL-Opl"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-aS-x87" customClass="BoldButton" customModule="MealMate2" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-aS-x87" customClass="BoldButton" customModule="MealMate" customModuleProvider="target">
                             <rect key="frame" x="12" y="186" width="130" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="130" id="8zG-Pj-pVM"/>
@@ -125,8 +128,14 @@
         </view>
     </objects>
     <designables>
+        <designable name="LbU-tq-4c1">
+            <size key="intrinsicContentSize" width="120" height="26.5"/>
+        </designable>
         <designable name="Wlr-aS-x87">
-            <size key="intrinsicContentSize" width="71" height="34"/>
+            <size key="intrinsicContentSize" width="70" height="34"/>
+        </designable>
+        <designable name="u0J-sg-sGl">
+            <size key="intrinsicContentSize" width="37" height="34"/>
         </designable>
     </designables>
     <resources>

@@ -32,6 +32,15 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     private func setupNavBar() {
         self.title = "Groceries"
+        
+        if let shareImage = UIImage(named: "Share")?.maskedWithColor(UIColor.appLight) {
+            let shareButton = UIButton(type: .custom)
+            shareButton.addTarget(self, action: #selector(shareTapped(_:)), for: .touchUpInside)
+            shareButton.setImage(shareImage, for: .normal)
+            shareButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            let shareItem = UIBarButtonItem(customView: shareButton)
+            self.navigationItem.rightBarButtonItem = shareItem
+        }
     }
     
     private func setupTable() {
@@ -45,6 +54,12 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
             self.modalInput = InputView.createInputFor(parentController: self, grocery: nil, indexPath: nil, delegate: self)
             self.modalInput?.showInput()
         }
+    }
+    
+    @IBAction func shareTapped(_ sender: AnyObject) {
+        let items = [groceryList.generateShareText()]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
     
     // MARK: - Helpers

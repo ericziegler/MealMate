@@ -95,10 +95,10 @@ class GroceryList {
                 }
                 placeGroceriesInCategories(ungroupedGroceries: convertedGroceries)
                 saveGroceries()
-                UserDefaults.standard.set(true, forKey: LegacyLoadedCacheKey)
-                UserDefaults.standard.synchronize()
             }
         }
+        UserDefaults.standard.set(true, forKey: LegacyLoadedCacheKey)
+        UserDefaults.standard.synchronize()
     }
     
     // MARK: - Sorting
@@ -207,18 +207,16 @@ class GroceryList {
     private func formattedShareMealsFor(category: Category) -> String {
         var result = ""
         let categoryGroceries = groceriesForCategory(category)
-        var checkedGroceries = [Grocery]()
+        var neededGroceries = [Grocery]()
         for curCategoryGrocery in categoryGroceries {
-            if curCategoryGrocery.isChecked == true {
-                checkedGroceries.append(curCategoryGrocery)
+            if curCategoryGrocery.isChecked == false {
+                neededGroceries.append(curCategoryGrocery)
             }
         }
-        if checkedGroceries.count > 0 {
+        if neededGroceries.count > 0 {
             result += "\(category.displayName)\n"
-            for curCheckedGrocery in checkedGroceries {
-                if curCheckedGrocery.isChecked {
-                    result += "\t- \(curCheckedGrocery.name)\n"
-                }
+            for curCheckedGrocery in neededGroceries {
+                result += "\t- \(curCheckedGrocery.name)\n"
             }
         }
         return result
