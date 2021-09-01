@@ -12,7 +12,7 @@
         <!--Base Navigation Controller-->
         <scene sceneID="Nsa-qG-hKv">
             <objects>
-                <navigationController id="VQj-DT-bxy" customClass="BaseNavigationController" customModule="MealMate2" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="VQj-DT-bxy" customClass="BaseNavigationController" customModule="MealMate" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DX1-OA-eAC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +28,7 @@
         <!--Main Controller-->
         <scene sceneID="NUG-Bk-Em2">
             <objects>
-                <viewController storyboardIdentifier="MainControllerId" id="A40-wv-wVM" customClass="MainController" customModule="MealMate2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainControllerId" id="A40-wv-wVM" customClass="MainController" customModule="MealMate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jsw-2P-VSv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroceryCellId" id="k4l-Ma-5kq" customClass="GroceryCell" customModule="MealMate2" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroceryCellId" id="k4l-Ma-5kq" customClass="GroceryCell" customModule="MealMate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k4l-Ma-5kq" id="7hD-D3-ldj">
@@ -58,7 +58,7 @@
                                                         <constraint firstAttribute="width" constant="16" id="apo-WE-ptp"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grocery" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvI-ZC-XCj" customClass="RegularLabel" customModule="MealMate2" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grocery" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvI-ZC-XCj" customClass="RegularLabel" customModule="MealMate" customModuleProvider="target">
                                                     <rect key="frame" x="43" y="18" width="321.5" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,7 +71,7 @@
                                                         <constraint firstAttribute="height" constant="1" id="Eag-0l-JHY"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MA8-D7-cZ9" userLabel="CheckButton" customClass="RegularButton" customModule="MealMate2" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MA8-D7-cZ9" userLabel="CheckButton" customClass="RegularButton" customModule="MealMate" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="38" height="58"/>
                                                     <connections>
                                                         <action selector="checkTapped:" destination="k4l-Ma-5kq" eventType="touchUpInside" id="mfZ-K7-jBk"/>
@@ -110,7 +110,7 @@
                                     <outlet property="delegate" destination="A40-wv-wVM" id="Bao-5H-YJf"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkY-Yy-62V" customClass="RegularButton" customModule="MealMate2" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkY-Yy-62V" customClass="RegularButton" customModule="MealMate" customModuleProvider="target">
                                 <rect key="frame" x="175" y="798" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Xpk-m3-BJ8"/>
