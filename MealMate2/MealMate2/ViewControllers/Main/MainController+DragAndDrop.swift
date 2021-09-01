@@ -22,6 +22,10 @@ extension MainController {
             return
         }
 
+        if allowsReordering == false {
+            return
+        }
+        
         let state = longPress.state
         let locationInView = longPress.location(in: groceryTable)
         let indexPath = groceryTable.indexPathForRow(at: locationInView)

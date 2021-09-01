@@ -38,7 +38,7 @@ class GroceryCell: UITableViewCell {
     
     // MARK: - Layout
     
-    func layoutFor(grocery: Grocery) {
+    func layoutFor(grocery: Grocery, showReorder: Bool) {
         if grocery.isChecked == true {
             checkImageView.image = UIImage(named: "Check")?.maskedWithColor(UIColor.appLightDark)
             nameLabel.textColor = UIColor.appMediumDark
@@ -52,6 +52,7 @@ class GroceryCell: UITableViewCell {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
             nameLabel.attributedText = attributeString
         }
+        gripImageView.isHidden = !showReorder
     }
     
     // MARK: - Actions

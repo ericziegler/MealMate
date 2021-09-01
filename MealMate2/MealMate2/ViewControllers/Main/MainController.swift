@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import AudioToolbox
 
-class MainController: BaseViewController, UITableViewDataSource, UITableViewDelegate, InputViewDelegate, GroceryCellDelegate {
+class MainController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate, InputViewDelegate, GroceryCellDelegate {
 
     // MARK: - Properties
     
@@ -19,15 +19,31 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet var addButton: RegularButton!
     
     let groceryList = GroceryList.shared
+    private var searchResults: [Grocery]?
     private var modalInput: InputView?
+    var allowsReordering = true
     
     // MARK: - Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSearch()
         setupNavBar()
         setupTable()
         setupGestureRecognizer()
+    }
+    
+    private func setupSearch() {
+        DispatchQueue.main.async {
+            let search = UISearchController(searchResultsController: nil)
+            search.searchResultsUpdater = self
+            search.obscuresBackgroundDuringPresentation = false
+            search.searchBar.placeholder = "Search"
+            search.searchBar.delegate = self
+            search.searchBar.searchTextField.leftView?.tintColor = UIColor.appLight
+            self.navigationItem.searchController = search
+            self.navigationItem.hidesSearchBarWhenScrolling = false
+        }
     }
     
     private func setupNavBar() {
@@ -72,7 +88,12 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     private func toggleCheckedAt(indexPath: IndexPath) {
         DispatchQueue.main.async {
-            let grocery = self.groceryAt(indexPath: indexPath)
+            var grocery: Grocery!
+            if let searchResults = self.searchResults {
+                grocery = searchResults[indexPath.row]
+            } else {
+                grocery = self.groceryAt(indexPath: indexPath)
+            }
             self.groceryTable.beginUpdates()
             grocery.isChecked = !grocery.isChecked
             self.groceryList.saveGroceries()
@@ -84,7 +105,12 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     private func deleteAt(indexPath: IndexPath) {
         DispatchQueue.main.async {
-            let grocery = self.groceryAt(indexPath: indexPath)
+            var grocery: Grocery!
+            if let searchResults = self.searchResults {
+                grocery = searchResults[indexPath.row]
+            } else {
+                grocery = self.groceryAt(indexPath: indexPath)
+            }
             self.groceryList.removeGrocery(grocery)
             self.groceryTable.reloadData()
             AudioServicesPlaySystemSound(1519)
@@ -94,18 +120,31 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        if let _ = searchResults {
+            return 1
+        } else {
+            return 4
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let category = Category(rawValue: section)!
-        return groceryList.groceriesForCategory(category).count
+        if let searchResults = searchResults {
+            return searchResults.count
+        } else {
+            let category = Category(rawValue: section)!
+            return groceryList.groceriesForCategory(category).count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GroceryCell.reuseId, for: indexPath) as! GroceryCell
-        let grocery = groceryAt(indexPath: indexPath)
-        cell.layoutFor(grocery: grocery)
+        var grocery: Grocery!
+        if let searchResults = searchResults {
+            grocery = searchResults[indexPath.row]
+        } else {
+            grocery = groceryAt(indexPath: indexPath)
+        }
+        cell.layoutFor(grocery: grocery, showReorder: allowsReordering)
         cell.delegate = self
         return cell
     }
@@ -113,7 +152,12 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let grocery = groceryAt(indexPath: indexPath)
+        var grocery: Grocery!
+        if let searchResults = searchResults {
+            grocery = searchResults[indexPath.row]
+        } else {
+            grocery = groceryAt(indexPath: indexPath)
+        }
         DispatchQueue.main.async {
             self.modalInput = InputView.createInputFor(parentController: self, grocery: grocery, indexPath: indexPath, delegate: self)
             self.modalInput?.showInput()
@@ -121,11 +165,15 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let category = Category(rawValue: section)!
-        if groceryList.groceriesForCategory(category).count > 0 {
-            return 55
+        if let _ = searchResults {
+            return 0
+        } else {
+            let category = Category(rawValue: section)!
+            if groceryList.groceriesForCategory(category).count > 0 {
+                return 55
+            }
+            return 0
         }
-        return 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -186,6 +234,45 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         return configuration
     }
     
+    // MARK: - UISearchResultsUpdating
+
+    func updateSearchResults(for searchController: UISearchController) {
+        DispatchQueue.main.async {
+            self.handleSearchBegan()
+            guard let text = searchController.searchBar.text else {
+                return
+            }
+
+            if text.count > 0 {
+                self.searchResults = self.groceryList.searchFor(text: text)
+            } else {
+                self.searchResults = nil
+            }
+            self.groceryTable.reloadData()
+        }
+    }
+
+    // MARK: - UISearchBarDelegate
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchResults = nil
+        // handle search ended after a delay because we need the keyboard to dismiss first
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.handleSearchEnded()
+            self.groceryTable.reloadData()
+        }
+    }
+    
+    private func handleSearchBegan() {
+        addButton.isHidden = true
+        allowsReordering = false
+    }
+    
+    private func handleSearchEnded() {
+        addButton.isHidden = false
+        allowsReordering = true
+    }
+    
     // MARK: - InputViewDelegate
     
     func groceryAdded(_ grocery: Grocery, forInputView inputView: InputView) {
@@ -199,12 +286,18 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     func groceryUpdated(_ grocery: Grocery, indexPath: IndexPath, forInputView inputView: InputView) {
         inputView.hideInput()
         DispatchQueue.main.async {
-            // if the section has not changed, just reload the row. if it has, reload the entire table.
-            if indexPath.section == grocery.category.rawValue {
-                self.groceryTable.reloadRows(at: [indexPath], with: .none)
-            } else {
+            if let searchResults = self.searchResults {
+                let grocery = searchResults[indexPath.row]
                 self.groceryList.updateGroceryCategory(grocery)
                 self.groceryTable.reloadData()
+            } else {
+                // if the section has not changed, just reload the row. if it has, reload the entire table.
+                if indexPath.section == grocery.category.rawValue {
+                    self.groceryTable.reloadRows(at: [indexPath], with: .none)
+                } else {
+                    self.groceryList.updateGroceryCategory(grocery)
+                    self.groceryTable.reloadData()
+                }
             }
             inputView.hideInput()
         }

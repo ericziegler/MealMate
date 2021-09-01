@@ -192,6 +192,20 @@ class GroceryList {
         updateIndexes()
     }
     
+    // MARK: - Searching
+    
+    func searchFor(text: String) -> [Grocery] {
+        var searchResults = [Grocery]()
+        for categoryGroceries in allGroceries {
+            for curGrocery in categoryGroceries {
+                if curGrocery.name.lowercased().contains(text.lowercased()) {
+                    searchResults.append(curGrocery)
+                }
+            }
+        }
+        return searchResults.sorted(by: { $0.name < $1.name })
+    }
+    
     // MARK: - Sharing
     
     func generateShareText() -> String {
