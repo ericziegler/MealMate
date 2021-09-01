@@ -145,8 +145,14 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="HxI-GU-4Hu">
+            <size key="intrinsicContentSize" width="80" height="80"/>
+        </designable>
         <designable name="q3y-V0-RuR">
-            <size key="intrinsicContentSize" width="67.5" height="23"/>
+            <size key="intrinsicContentSize" width="68" height="23"/>
+        </designable>
+        <designable name="twU-1I-YiC">
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
     </designables>
     <resources>

@@ -10,6 +10,8 @@ import Foundation
 // MARK: - Constants
 
 let GroceryListCacheKey = "GroceryListCacheKey"
+let LegacyMealsCacheKey = "MealListCacheKey"
+let LegacyLoadedCacheKey = "LegacyLoadedCacheKey"
 
 class GroceryList {
 
@@ -63,20 +65,40 @@ class GroceryList {
     // we have a single array of groceries. we need to separate the groceries out into the appropriate category arrays based
     // on their grocery.category property
     func loadGroceries() {
-        if let groceryListData = UserDefaults.standard.data(forKey: GroceryListCacheKey) {
-            if let cachedGroceries = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(groceryListData) as? [Grocery] {
-                placeGroceriesInCategories(ungroupedGroceries: cachedGroceries)
+        if UserDefaults.standard.bool(forKey: LegacyLoadedCacheKey) == true {
+            if let groceryListData = UserDefaults.standard.data(forKey: GroceryListCacheKey) {
+                if let cachedGroceries = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(groceryListData) as? [Grocery] {
+                    placeGroceriesInCategories(ungroupedGroceries: cachedGroceries)
+                }
             }
+        } else {
+            loadLegacyData()
         }
     }
     
-    func placeGroceriesInCategories(ungroupedGroceries: [Grocery]) {
+    private func placeGroceriesInCategories(ungroupedGroceries: [Grocery]) {
         buildCategories()
         for curGrocery in ungroupedGroceries {
             allGroceries[curGrocery.category.rawValue].append(curGrocery)
         }
         // sort the groceries in each category based on their index
         sortGroceries()
+    }
+    
+    private func loadLegacyData() {
+        if let mealListData = UserDefaults.standard.data(forKey: LegacyMealsCacheKey) {
+            if let meals = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(mealListData) as? [Meal] {
+                var convertedGroceries = [Grocery]()
+                for curMeal in meals {
+                    let grocery = curMeal.convertToGrocery()
+                    convertedGroceries.append(grocery)
+                }
+                placeGroceriesInCategories(ungroupedGroceries: convertedGroceries)
+                saveGroceries()
+                UserDefaults.standard.set(true, forKey: LegacyLoadedCacheKey)
+                UserDefaults.standard.synchronize()
+            }
+        }
     }
     
     // MARK: - Sorting

@@ -50,6 +50,13 @@
 		78AE18F026DEBC72004E2A9A /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78AE18EF26DEBC72004E2A9A /* InputView.xib */; };
 		78AE18F226DED46D004E2A9A /* MainController+DragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18F126DED46D004E2A9A /* MainController+DragAndDrop.swift */; };
 		78AE18F426DF2C1B004E2A9A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE18F326DF2C1B004E2A9A /* Category.swift */; };
+		78AE194426DFE33C004E2A9A /* TextViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE193E26DFE33C004E2A9A /* TextViewComponents.swift */; };
+		78AE194526DFE33C004E2A9A /* LabelComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE193F26DFE33C004E2A9A /* LabelComponents.swift */; };
+		78AE194626DFE33C004E2A9A /* TextFieldComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE194026DFE33C004E2A9A /* TextFieldComponents.swift */; };
+		78AE194726DFE33C004E2A9A /* ButtonComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE194126DFE33C004E2A9A /* ButtonComponents.swift */; };
+		78AE194826DFE33C004E2A9A /* CollectionViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE194226DFE33C004E2A9A /* CollectionViewComponents.swift */; };
+		78AE194926DFE33C004E2A9A /* FontComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE194326DFE33C004E2A9A /* FontComponents.swift */; };
+		78AE194B26DFE34C004E2A9A /* ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE194A26DFE34C004E2A9A /* ColorComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +105,13 @@
 		78AE18EF26DEBC72004E2A9A /* InputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
 		78AE18F126DED46D004E2A9A /* MainController+DragAndDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainController+DragAndDrop.swift"; sourceTree = "<group>"; };
 		78AE18F326DF2C1B004E2A9A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		78AE193E26DFE33C004E2A9A /* TextViewComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewComponents.swift; sourceTree = "<group>"; };
+		78AE193F26DFE33C004E2A9A /* LabelComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponents.swift; sourceTree = "<group>"; };
+		78AE194026DFE33C004E2A9A /* TextFieldComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldComponents.swift; sourceTree = "<group>"; };
+		78AE194126DFE33C004E2A9A /* ButtonComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonComponents.swift; sourceTree = "<group>"; };
+		78AE194226DFE33C004E2A9A /* CollectionViewComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewComponents.swift; sourceTree = "<group>"; };
+		78AE194326DFE33C004E2A9A /* FontComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontComponents.swift; sourceTree = "<group>"; };
+		78AE194A26DFE34C004E2A9A /* ColorComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +219,14 @@
 			isa = PBXGroup;
 			children = (
 				785D4CFB26DD698C003FB0E1 /* ButtonComponents.swift */,
+				78AE194A26DFE34C004E2A9A /* ColorComponents.swift */,
 				785D4CFE26DD698C003FB0E1 /* CollectionViewComponents.swift */,
+				78AE194126DFE33C004E2A9A /* ButtonComponents.swift */,
+				78AE194226DFE33C004E2A9A /* CollectionViewComponents.swift */,
+				78AE194326DFE33C004E2A9A /* FontComponents.swift */,
+				78AE193F26DFE33C004E2A9A /* LabelComponents.swift */,
+				78AE194026DFE33C004E2A9A /* TextFieldComponents.swift */,
+				78AE193E26DFE33C004E2A9A /* TextViewComponents.swift */,
 				785D4CFD26DD698C003FB0E1 /* ColorComponents.swift */,
 				785D4CFF26DD698C003FB0E1 /* FontComponents.swift */,
 				785D4D0026DD698C003FB0E1 /* LabelComponents.swift */,
@@ -379,6 +400,7 @@
 				78AE18EC26DEB6D8004E2A9A /* GroceryList.swift in Sources */,
 				785D4CEE26DD6933003FB0E1 /* UISegmentedControlExtensions.swift in Sources */,
 				785D4CEC26DD6933003FB0E1 /* UIFontExtensions.swift in Sources */,
+				78AE194826DFE33C004E2A9A /* CollectionViewComponents.swift in Sources */,
 				785D4D0426DD698C003FB0E1 /* ColorComponents.swift in Sources */,
 				785D4CED26DD6933003FB0E1 /* UITableViewExtensions.swift in Sources */,
 				785D4CF926DD6966003FB0E1 /* IntExtensions.swift in Sources */,
@@ -386,6 +408,8 @@
 				785D4CF826DD6966003FB0E1 /* DateExtensions.swift in Sources */,
 				785D4CD926DD68C3003FB0E1 /* BaseViewController.swift in Sources */,
 				785D4D0226DD698C003FB0E1 /* ButtonComponents.swift in Sources */,
+				78AE194926DFE33C004E2A9A /* FontComponents.swift in Sources */,
+				78AE194526DFE33C004E2A9A /* LabelComponents.swift in Sources */,
 				785D4D0626DD698C003FB0E1 /* FontComponents.swift in Sources */,
 				785D4CFA26DD6966003FB0E1 /* RangeExtensions.swift in Sources */,
 				78AE18EA26DEA11F004E2A9A /* GroceryCell.swift in Sources */,
@@ -399,14 +423,18 @@
 				785D4CDC26DD68F9003FB0E1 /* AppUtilities.swift in Sources */,
 				78AE18EE26DEB6DF004E2A9A /* Grocery.swift in Sources */,
 				78AE18F226DED46D004E2A9A /* MainController+DragAndDrop.swift in Sources */,
+				78AE194626DFE33C004E2A9A /* TextFieldComponents.swift in Sources */,
 				785D4CF726DD6966003FB0E1 /* URLExtensions.swift in Sources */,
 				78AE18E726DD7B47004E2A9A /* UIViewControllerExtensions.swift in Sources */,
 				785D4CF026DD6933003FB0E1 /* UITextFieldExtensions.swift in Sources */,
 				785D4D0526DD698C003FB0E1 /* CollectionViewComponents.swift in Sources */,
 				785D4CB226DD6792003FB0E1 /* SceneDelegate.swift in Sources */,
+				78AE194B26DFE34C004E2A9A /* ColorComponents.swift in Sources */,
 				785D4D0826DD698C003FB0E1 /* TextViewComponents.swift in Sources */,
 				785D4CEA26DD6933003FB0E1 /* UIColorExtensions.swift in Sources */,
+				78AE194426DFE33C004E2A9A /* TextViewComponents.swift in Sources */,
 				78AE18E526DD7478004E2A9A /* InputView.swift in Sources */,
+				78AE194726DFE33C004E2A9A /* ButtonComponents.swift in Sources */,
 				785D4CF626DD6966003FB0E1 /* StringExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
