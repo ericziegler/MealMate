@@ -15,13 +15,164 @@ class GroceryList {
 
     // MARK: - Properties
 
-    private var groceries = [Grocery]()
-    var count: Int {
-        get {
-            return groceries.count
+    // 2-dimensional array, each item in the array represents a collection of groceries for a specific category
+    // e.g. allGroceries[0] = groceries with a category of Category.breakfast
+    //      allGroceries[1] = groceries with a category of Category.lunch, etc.
+    private var allGroceries = [[Grocery]]()
+
+    // MARK: - Init
+
+    static let shared = GroceryList()
+
+    init() {
+        buildCategories()
+        loadGroceries()
+    }
+    
+    private func buildCategories() {
+        allGroceries.removeAll()
+        // instantiate an empty array of Grocery for each Category
+        for _ in 0 ..< Category.count.rawValue {
+            allGroceries.append([Grocery]())
         }
     }
-    var formattedShareText: String {
+
+    // MARK: - Saving
+
+    // groceries are not saved in their category arrays. rather, they are saved as a single array of groceries.
+    // they will be rebuilt into their category arrays based on the grocery.category property in loadGroceries
+    func saveGroceries() {
+        let groceriesToCache = combineCategoryGroceries()
+        let groceryListData = try? NSKeyedArchiver.archivedData(withRootObject: groceriesToCache, requiringSecureCoding: false)
+        UserDefaults.standard.set(groceryListData, forKey: GroceryListCacheKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private func combineCategoryGroceries() -> [Grocery] {
+        var combinedGroceries = [Grocery]()
+        for categoryGroceries in allGroceries {
+            for curGrocery in categoryGroceries {
+                combinedGroceries.append(curGrocery)
+            }
+        }
+        return combinedGroceries
+    }
+    
+    // MARK: - Loading
+
+    // we have a single array of groceries. we need to separate the groceries out into the appropriate category arrays based
+    // on their grocery.category property
+    func loadGroceries() {
+        if let groceryListData = UserDefaults.standard.data(forKey: GroceryListCacheKey) {
+            if let cachedGroceries = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(groceryListData) as? [Grocery] {
+                placeGroceriesInCategories(ungroupedGroceries: cachedGroceries)
+            }
+        }
+    }
+    
+    func placeGroceriesInCategories(ungroupedGroceries: [Grocery]) {
+        buildCategories()
+        for curGrocery in ungroupedGroceries {
+            allGroceries[curGrocery.category.rawValue].append(curGrocery)
+        }
+        // sort the groceries in each category based on their index
+        sortGroceries()
+    }
+    
+    // MARK: - Sorting
+    
+    private func sortGroceries() {
+        for (i, categoryGroceries) in allGroceries.enumerated() {
+            let sortedGroceries = categoryGroceries.sorted(by: { $0.index < $1.index })
+            allGroceries[i] = sortedGroceries
+        }
+    }
+    
+    // for each category, loop through the groceries and update their index property based on their position within the category array
+    private func updateIndexes() {
+        for categoryGroceries in allGroceries {
+            for (i, curGrocery) in categoryGroceries.enumerated() {
+                curGrocery.index = i
+            }
+        }
+        saveGroceries()
+    }
+
+    // MARK - Adding / Removing
+
+    func addGrocery(_ grocery: Grocery, toCategory category: Category) {
+        // set the grocery's index to the end of the array before adding it
+        allGroceries[category.rawValue].append(grocery)
+        updateIndexes()
+    }
+    
+    func removeGrocery(_ grocery: Grocery) {
+        let categoryGroceries = allGroceries[grocery.category.rawValue]
+        for (i, curGrocery) in categoryGroceries.enumerated() {
+            if curGrocery.identifier == grocery.identifier {
+                allGroceries[grocery.category.rawValue].remove(at: i)
+                updateIndexes()
+                break
+            }
+        }
+    }
+    
+    // MARK: - Accessors
+    
+    func grocery(at index: Int, inCategory category: Category) -> Grocery? {
+        return allGroceries[category.rawValue][index]
+    }
+
+    func groceriesForCategory(_ category: Category) -> [Grocery] {
+        return allGroceries[category.rawValue]
+    }
+    
+    // MARK: - Moving
+    
+    func moveGrocery(grocery: Grocery, toIndex index: Int, inCategory category: Category) {
+        if grocery.category != category {
+            // if the grocery has changed categories, remove it from the current category,
+            // add it to the new category, and update the grocery.category property
+            var oldCategoryGroceries = allGroceries[grocery.category.rawValue]
+            oldCategoryGroceries.remove(at: grocery.index)
+            allGroceries[grocery.category.rawValue] = oldCategoryGroceries
+            
+            var newCategoryGroceries = allGroceries[category.rawValue]
+            newCategoryGroceries.insert(grocery, at: index)
+            allGroceries[category.rawValue] = newCategoryGroceries
+            
+            grocery.category = category
+        } else {
+            // grocery moved within the same category. move internally within the array
+            var categoryGroceries = allGroceries[category.rawValue]
+            categoryGroceries.insert(categoryGroceries.remove(at: grocery.index), at: index)
+            allGroceries[category.rawValue] = categoryGroceries
+        }
+        // update all indexes after the move is complete
+        updateIndexes()
+    }
+    
+    // if a grocery's category has changed, it needs to be moved to the appropriate category array
+    func updateGroceryCategory(_ grocery: Grocery) {
+        // loop through all categories to find where the grocery used to live
+        // remove it from this category when it has been found
+        for (categoryGroceriesIndex, categoryGroceries) in allGroceries.enumerated() {
+            for (curGroceryIndex, curGrocery) in categoryGroceries.enumerated() {
+                if curGrocery.identifier == grocery.identifier {
+                    allGroceries[categoryGroceriesIndex].remove(at: curGroceryIndex)
+                    break
+                }
+            }
+        }
+        // add the grocery to its new category array at the end
+        allGroceries[grocery.category.rawValue].append(grocery)
+        // update indexes after updating the category arrays
+        updateIndexes()
+    }
+    
+    // MARK: - Sharing
+    
+    func generateShareText() -> String {
         var result = ""
         result += formattedShareMealsFor(category: .breakfast)
         result += formattedShareMealsFor(category: .lunch)
@@ -31,100 +182,24 @@ class GroceryList {
         return result
     }
 
-    private func formattedShareMealsFor(category: GroceryCategory) -> String {
+    private func formattedShareMealsFor(category: Category) -> String {
         var result = ""
         let categoryGroceries = groceriesForCategory(category)
-        var neededGroceries = [Grocery]()
+        var checkedGroceries = [Grocery]()
         for curCategoryGrocery in categoryGroceries {
             if curCategoryGrocery.isChecked == true {
-                neededGroceries.append(curCategoryGrocery)
+                checkedGroceries.append(curCategoryGrocery)
             }
         }
-        if neededGroceries.count > 0 {
+        if checkedGroceries.count > 0 {
             result += "\(category.displayName)\n"
-            for curNeededGrocery in neededGroceries {
-                if curNeededGrocery.isChecked {
-                    result += "\t- \(curNeededGrocery.name)\n"
+            for curCheckedGrocery in checkedGroceries {
+                if curCheckedGrocery.isChecked {
+                    result += "\t- \(curCheckedGrocery.name)\n"
                 }
             }
         }
         return result
     }
-
-    // MARK: - Init
-
-    static let shared = GroceryList()
-
-    init() {
-        loadGroceries()
-    }
-
-    // MARK: - Saving / Loading
-
-    func saveGroceries() {
-        let groceryListData = try? NSKeyedArchiver.archivedData(withRootObject: groceries, requiringSecureCoding: false)
-        UserDefaults.standard.set(groceryListData, forKey: GroceryListCacheKey)
-        UserDefaults.standard.synchronize()
-    }
-
-    func loadGroceries() {
-        if let groceryListData = UserDefaults.standard.data(forKey: GroceryListCacheKey) {
-            if let cachedGroceries = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(groceryListData) as? [Grocery] {
-                groceries = cachedGroceries.sorted(by: { $0.index < $1.index } )
-            }
-        }
-    }
-
-    // MARK - Adding / Removing / Filtering
-
-    func addGrocery(_ grocery: Grocery) {
-        groceries.append(grocery)
-        saveGroceries()
-    }
-
-    func removeGrocery(_ grocery: Grocery) {
-        for (index, curGrocery) in groceries.enumerated() {
-            if curGrocery.identifier == grocery.identifier {
-                groceries.remove(at: index)
-                saveGroceries()
-                break
-            }
-        }
-    }
-
-    func grocery(at index: Int) -> Grocery {
-        return groceries[index]
-    }
-
-    func groceriesForCategory(_ category: GroceryCategory) -> [Grocery] {
-        var result = [Grocery]()
-        for curGrocery in groceries {
-            if curGrocery.category == category {
-                result.append(curGrocery)
-            }
-        }
-        return result
-    }
-
-    func checkedGroceries() -> [Grocery] {
-        var result = [Grocery]()
-        for curGrocery in groceries {
-            if curGrocery.isChecked == true {
-                result.append(curGrocery)
-            }
-        }
-        return result
-    }
-
-    func groceryWithId(_ identifier: String) -> Grocery? {
-        var result: Grocery?
-        for curGrocery in groceries {
-            if curGrocery.identifier == identifier {
-                result = curGrocery
-                break
-            }
-        }
-        return result
-    }
-
+    
 }

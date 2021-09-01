@@ -15,30 +15,6 @@ let GroceryCategoryCacheKey = "GroceryCategoryCacheKey"
 let GroceryCheckedCacheKey = "GroceryCheckedCacheKey"
 let GroceryIndexCacheKey = "GroceryIndexCacheKey"
 
-// MARK: - Enums
-
-enum GroceryCategory: Int {
-    case breakfast
-    case lunch
-    case dinner
-    case general
-
-    var displayName: String {
-        get {
-            switch self {
-            case .breakfast:
-                return "Breakfast"
-            case .lunch:
-                return "Lunch"
-            case .dinner:
-                return "Dinner"
-            case .general:
-                return "General"
-            }
-        }
-    }
-}
-
 import Foundation
 
 class Grocery: NSObject, NSCoding {
@@ -47,7 +23,7 @@ class Grocery: NSObject, NSCoding {
 
     var identifier = ""
     var name = ""
-    var category = GroceryCategory.breakfast
+    var category = Category.breakfast
     var isChecked = false
     var index = 0
 
@@ -67,7 +43,7 @@ class Grocery: NSObject, NSCoding {
         if let groceryName = decoder.decodeObject(forKey: GroceryNameCacheKey) as? String {
             name = groceryName
         }
-        if let groceryCategory = GroceryCategory(rawValue: decoder.decodeInteger(forKey: GroceryCategoryCacheKey)) {
+        if let groceryCategory = Category(rawValue: decoder.decodeInteger(forKey: GroceryCategoryCacheKey)) {
             category = groceryCategory
         }
         if let groceryIndex = decoder.decodeObject(forKey: GroceryIndexCacheKey) as? NSNumber {

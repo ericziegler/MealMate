@@ -18,7 +18,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet var groceryTable: UITableView!
     @IBOutlet var addButton: RegularButton!
     
-    private let groceryList = GroceryList.shared
+    let groceryList = GroceryList.shared
     private var modalInput: InputView?
     
     // MARK: - Init
@@ -27,6 +27,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         super.viewDidLoad()
         setupNavBar()
         setupTable()
+        setupGestureRecognizer()
     }
     
     private func setupNavBar() {
@@ -48,8 +49,8 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     // MARK: - Helpers
     
-    private func groceryAt(indexPath: IndexPath) -> Grocery {
-        let category = GroceryCategory(rawValue: indexPath.section)!
+    func groceryAt(indexPath: IndexPath) -> Grocery {
+        let category = Category(rawValue: indexPath.section)!
         let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
         return grocery
     }
@@ -82,7 +83,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let category = GroceryCategory(rawValue: section)!
+        let category = Category(rawValue: section)!
         return groceryList.groceriesForCategory(category).count
     }
     
@@ -105,7 +106,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let category = GroceryCategory(rawValue: section)!
+        let category = Category(rawValue: section)!
         if groceryList.groceriesForCategory(category).count > 0 {
             return 55
         }
@@ -113,7 +114,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let category = GroceryCategory(rawValue: section)!
+        let category = Category(rawValue: section)!
 
         let bg = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
         bg.backgroundColor = UIColor.appMedium
@@ -173,7 +174,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     // MARK: - InputViewDelegate
     
     func groceryAdded(_ grocery: Grocery, forInputView inputView: InputView) {
-        groceryList.addGrocery(grocery)
+        groceryList.addGrocery(grocery, toCategory: grocery.category)
         DispatchQueue.main.async {
             self.groceryTable.reloadData()
             inputView.hideInput()
@@ -187,6 +188,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
             if indexPath.section == grocery.category.rawValue {
                 self.groceryTable.reloadRows(at: [indexPath], with: .none)
             } else {
+                self.groceryList.updateGroceryCategory(grocery)
                 self.groceryTable.reloadData()
             }
             inputView.hideInput()

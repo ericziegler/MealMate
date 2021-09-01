@@ -146,7 +146,7 @@
     </scenes>
     <designables>
         <designable name="q3y-V0-RuR">
-            <size key="intrinsicContentSize" width="68" height="23"/>
+            <size key="intrinsicContentSize" width="67.5" height="23"/>
         </designable>
     </designables>
     <resources>

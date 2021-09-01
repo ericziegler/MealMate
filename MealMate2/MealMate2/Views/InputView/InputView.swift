@@ -60,7 +60,7 @@ class InputView: UIView {
             titleLabel.text = "Add Grocery"
             addButton.setTitle("ADD", for: .normal)
         }
-        
+        inputField.becomeFirstResponder()
         self.alpha = 0
         UIView.animate(withDuration: 0.15) {
             self.alpha = 1
@@ -84,7 +84,7 @@ class InputView: UIView {
             isUpdate = false
         }
         grocery!.name = inputField.text ?? ""
-        grocery!.category = GroceryCategory(rawValue: inputSegments.selectedSegmentIndex)!
+        grocery!.category = Category(rawValue: inputSegments.selectedSegmentIndex)!
         
         if isUpdate == true {
             if let indexPath = self.indexPath {
