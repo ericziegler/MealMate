@@ -22,6 +22,15 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     private var searchResults: [Grocery]?
     private var modalInput: InputView?
     var allowsReordering = true
+    var curFilter: GroceryFilter {
+        get {
+            return Preferences.shared.lastFilter
+        }
+        set {
+            Preferences.shared.lastFilter = newValue
+            Preferences.shared.savePreferences()
+        }
+    }
     
     // MARK: - Init
     
@@ -49,14 +58,19 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     private func setupNavBar() {
         self.title = "Groceries"
         
-        if let shareImage = UIImage(named: "Share")?.maskedWithColor(UIColor.appLight) {
-            let shareButton = UIButton(type: .custom)
-            shareButton.addTarget(self, action: #selector(shareTapped(_:)), for: .touchUpInside)
-            shareButton.setImage(shareImage, for: .normal)
-            shareButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-            let shareItem = UIBarButtonItem(customView: shareButton)
-            self.navigationItem.rightBarButtonItem = shareItem
-        }
+        let filterButton = UIButton(type: .custom)
+        filterButton.addTarget(self, action: #selector(filterTapped(_:)), for: .touchUpInside)
+        filterButton.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle", withConfiguration: UIImage.largeSymbolConfiguration), for: .normal)
+        filterButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        let filterItem = UIBarButtonItem(customView: filterButton)
+        self.navigationItem.leftBarButtonItem = filterItem
+        
+        let shareButton = UIButton(type: .custom)
+        shareButton.addTarget(self, action: #selector(shareTapped(_:)), for: .touchUpInside)
+        shareButton.setImage(UIImage(systemName: "square.and.arrow.up", withConfiguration: UIImage.largeSymbolConfiguration), for: .normal)
+        shareButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        let shareItem = UIBarButtonItem(customView: shareButton)
+        self.navigationItem.rightBarButtonItem = shareItem
     }
     
     private func setupTable() {
@@ -72,8 +86,29 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
+    @IBAction func filterTapped(_ sender: AnyObject) {
+        let actionSheet = UIAlertController(title: "Filter Groceries", message: nil, preferredStyle: .actionSheet)
+        let allTitle = curFilter == .all ? "✓ All" : "All"
+        let allAction = UIAlertAction(title: allTitle, style: .default) { action in
+            self.updateFilter(.all)
+        }
+        let pickedUpTitle = curFilter == .pickedUp ? "✓ Picked Up" : "Picked Up"
+        let pickedUpAction = UIAlertAction(title: pickedUpTitle, style: .default) { action in
+            self.updateFilter(.pickedUp)
+        }
+        let notPickedUpTitle = curFilter == .notPickedUp ? "✓ Not Picked Up" : "Not Picked Up"
+        let notPickedUpAction = UIAlertAction(title: notPickedUpTitle, style: .default) { action in
+            self.updateFilter(.notPickedUp)
+        }
+        actionSheet.addAction(allAction)
+        actionSheet.addAction(pickedUpAction)
+        actionSheet.addAction(notPickedUpAction)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(actionSheet, animated: true)
+    }
+    
     @IBAction func shareTapped(_ sender: AnyObject) {
-        let items = [groceryList.generateShareText()]
+        let items = [groceryList.generateShareText(filter: curFilter)]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
     }
@@ -82,7 +117,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     
     func groceryAt(indexPath: IndexPath) -> Grocery {
         let category = Category(rawValue: indexPath.section)!
-        let grocery = groceryList.groceriesForCategory(category)[indexPath.row]
+        let grocery = groceryList.groceriesForCategory(category, filter: curFilter)[indexPath.row]
         return grocery
     }
     
@@ -117,6 +152,18 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
+    private func updateFilter(_ filter: GroceryFilter) {
+        if filter == curFilter {
+            return
+        }
+        
+        curFilter = filter
+        DispatchQueue.main.async {
+            self.allowsReordering = self.curFilter == .all
+            self.groceryTable.reloadData()
+        }
+    }
+    
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -132,7 +179,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
             return searchResults.count
         } else {
             let category = Category(rawValue: section)!
-            return groceryList.groceriesForCategory(category).count
+            return groceryList.groceriesForCategory(category, filter: curFilter).count
         }
     }
     
@@ -169,7 +216,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
             return 0
         } else {
             let category = Category(rawValue: section)!
-            if groceryList.groceriesForCategory(category).count > 0 {
+            if groceryList.groceriesForCategory(category, filter: curFilter).count > 0 {
                 return 55
             }
             return 0

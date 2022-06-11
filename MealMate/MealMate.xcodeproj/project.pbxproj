@@ -50,6 +50,7 @@
 		78AE19CA26DFFE7C004E2A9A /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78AE19C726DFFE5B004E2A9A /* Lato-Regular.ttf */; };
 		78AE19CB26DFFE7C004E2A9A /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78AE19C426DFFE5B004E2A9A /* Lato-Bold.ttf */; };
 		78AE19CD26DFFE9D004E2A9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78AE19CC26DFFE9C004E2A9A /* Assets.xcassets */; };
+		78FA3B9328544FBB0087B927 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA3B9228544FBB0087B927 /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		78AE19C626DFFE5B004E2A9A /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
 		78AE19C726DFFE5B004E2A9A /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		78AE19CC26DFFE9C004E2A9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		78FA3B9228544FBB0087B927 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				78AE198626DFFE00004E2A9A /* Grocery.swift */,
 				78AE198726DFFE00004E2A9A /* GroceryList.swift */,
 				78AE198826DFFE00004E2A9A /* Legacy.swift */,
+				78FA3B9228544FBB0087B927 /* Preferences.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				78AE19B026DFFE32004E2A9A /* UIViewExtensions.swift in Sources */,
 				78AE198C26DFFE00004E2A9A /* Legacy.swift in Sources */,
 				78AE198F26DFFE0F004E2A9A /* GroceryCell.swift in Sources */,
+				78FA3B9328544FBB0087B927 /* Preferences.swift in Sources */,
 				78AE19B326DFFE32004E2A9A /* UIColorExtensions.swift in Sources */,
 				78AE198D26DFFE00004E2A9A /* Category.swift in Sources */,
 				78AE199326DFFE18004E2A9A /* InputView.swift in Sources */,
@@ -547,7 +551,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = MJA8334VZT;
 				INFOPLIST_FILE = MealMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -555,7 +559,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zigabytes.MealMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -568,7 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = MJA8334VZT;
 				INFOPLIST_FILE = MealMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -576,7 +580,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zigabytes.MealMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

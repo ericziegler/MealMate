@@ -86,5 +86,17 @@ extension UIImage {
         }
         return image
     }
+    
+    static var smallSymbolConfiguration: UIImage.SymbolConfiguration {
+        return UIImage.SymbolConfiguration(scale: .small)
+    }
+    
+    static var mediumSymbolConfiguration: UIImage.SymbolConfiguration {
+        return UIImage.SymbolConfiguration(scale: .medium)
+    }
+    
+    static var largeSymbolConfiguration: UIImage.SymbolConfiguration {
+        return UIImage.SymbolConfiguration(scale: .large)
+    }
 
 }

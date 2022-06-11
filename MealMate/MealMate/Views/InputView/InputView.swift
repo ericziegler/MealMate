@@ -58,6 +58,7 @@ class InputView: UIView, UITextFieldDelegate {
             addButton.setTitle("UPDATE", for: .normal)
         } else {
             titleLabel.text = "Add Grocery"
+            inputSegments.selectedSegmentIndex = Preferences.shared.lastCategory.rawValue
             addButton.setTitle("ADD", for: .normal)
         }
         inputField.becomeFirstResponder()
@@ -84,7 +85,10 @@ class InputView: UIView, UITextFieldDelegate {
             isUpdate = false
         }
         grocery!.name = inputField.text ?? ""
-        grocery!.category = Category(rawValue: inputSegments.selectedSegmentIndex)!
+        let category = Category(rawValue: inputSegments.selectedSegmentIndex)!
+        grocery!.category = category
+        Preferences.shared.lastCategory = category
+        Preferences.shared.savePreferences()
         
         if isUpdate == true {
             if let indexPath = self.indexPath {

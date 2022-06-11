@@ -13,6 +13,14 @@ let GroceryListCacheKey = "GroceryListCacheKey"
 let LegacyMealsCacheKey = "MealListCacheKey"
 let LegacyLoadedCacheKey = "LegacyLoadedCacheKey"
 
+// MARK: - Enums
+
+enum GroceryFilter: Int {
+    case all
+    case pickedUp
+    case notPickedUp
+}
+
 class GroceryList {
 
     // MARK: - Properties
@@ -145,8 +153,17 @@ class GroceryList {
         return allGroceries[category.rawValue][index]
     }
 
-    func groceriesForCategory(_ category: Category) -> [Grocery] {
-        return allGroceries[category.rawValue]
+    func groceriesForCategory(_ category: Category, filter: GroceryFilter) -> [Grocery] {
+        let categoryGroceries = allGroceries[category.rawValue]
+        
+        switch filter {
+        case .pickedUp:
+            return categoryGroceries.filter() { $0.isChecked == true }
+        case .notPickedUp:
+            return categoryGroceries.filter() { $0.isChecked == false }
+        default:
+            return categoryGroceries
+        }
     }
     
     // MARK: - Moving
@@ -208,28 +225,22 @@ class GroceryList {
     
     // MARK: - Sharing
     
-    func generateShareText() -> String {
+    func generateShareText(filter: GroceryFilter) -> String {
         var result = ""
-        result += formattedShareMealsFor(category: .breakfast)
-        result += formattedShareMealsFor(category: .lunch)
-        result += formattedShareMealsFor(category: .dinner)
-        result += formattedShareMealsFor(category: .general)
+        result += formattedShareMealsFor(category: .breakfast, filter: filter)
+        result += formattedShareMealsFor(category: .lunch, filter: filter)
+        result += formattedShareMealsFor(category: .dinner, filter: filter)
+        result += formattedShareMealsFor(category: .general, filter: filter)
         print(result)
         return result
     }
 
-    private func formattedShareMealsFor(category: Category) -> String {
+    private func formattedShareMealsFor(category: Category, filter: GroceryFilter) -> String {
         var result = ""
-        let categoryGroceries = groceriesForCategory(category)
-        var neededGroceries = [Grocery]()
-        for curCategoryGrocery in categoryGroceries {
-            if curCategoryGrocery.isChecked == false {
-                neededGroceries.append(curCategoryGrocery)
-            }
-        }
-        if neededGroceries.count > 0 {
+        let categoryGroceries = groceriesForCategory(category, filter: filter)
+        if categoryGroceries.count > 0 {
             result += "\(category.displayName)\n"
-            for curCheckedGrocery in neededGroceries {
+            for curCheckedGrocery in categoryGroceries {
                 result += "\t- \(curCheckedGrocery.name)\n"
             }
         }

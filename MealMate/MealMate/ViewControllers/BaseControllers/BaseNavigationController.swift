@@ -25,10 +25,25 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         self.delegate = self
+        styleiOS14NavBar()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    // MARK: - Styling
+    
+    private func styleiOS14NavBar() {
+        if #available(iOS 15.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.appRed
+            appearance.titleTextAttributes = navTitleTextAttributes()
+            navigationBar.standardAppearance = appearance;
+            navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
+            navigationBar.tintColor = UIColor.appLight
+        }
     }
 
     // MARK: - Navigation
