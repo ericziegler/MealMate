@@ -132,7 +132,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
             self.groceryTable.beginUpdates()
             grocery.isChecked = !grocery.isChecked
             self.groceryList.saveGroceries()
-            self.groceryTable.reloadRows(at: [indexPath], with: .automatic)
+            self.groceryTable.reloadSections([indexPath.section], with: .automatic)
             self.groceryTable.endUpdates()
             AudioServicesPlaySystemSound(1519)
         }
