@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7880631828B2710E009B1B84 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880631728B2710E009B1B84 /* UINavigationItem.swift */; };
 		789061B1237306A3000DFC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789061B0237306A3000DFC9B /* AppDelegate.swift */; };
 		789061BB237306A4000DFC9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 789061B9237306A4000DFC9B /* LaunchScreen.storyboard */; };
 		78AE190F26DFE1B1004E2A9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78AE190E26DFE1B1004E2A9A /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7880631728B2710E009B1B84 /* UINavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
 		789061AD237306A3000DFC9B /* MealMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		789061B0237306A3000DFC9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		789061BA237306A4000DFC9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				78AE19A926DFFE32004E2A9A /* UIColorExtensions.swift */,
 				78AE19A426DFFE31004E2A9A /* UIFontExtensions.swift */,
 				78AE19A526DFFE31004E2A9A /* UIImageExtensions.swift */,
+				7880631728B2710E009B1B84 /* UINavigationItem.swift */,
 				78AE19A326DFFE31004E2A9A /* UISegmentedControlExtensions.swift */,
 				78AE19A726DFFE32004E2A9A /* UITableViewExtensions.swift */,
 				78AE19AB26DFFE32004E2A9A /* UITextFieldExtensions.swift */,
@@ -405,6 +408,7 @@
 				78AE198F26DFFE0F004E2A9A /* GroceryCell.swift in Sources */,
 				78FA3B9328544FBB0087B927 /* Preferences.swift in Sources */,
 				78AE19B326DFFE32004E2A9A /* UIColorExtensions.swift in Sources */,
+				7880631828B2710E009B1B84 /* UINavigationItem.swift in Sources */,
 				78AE198D26DFFE00004E2A9A /* Category.swift in Sources */,
 				78AE199326DFFE18004E2A9A /* InputView.swift in Sources */,
 				78AE19BE26DFFE42004E2A9A /* IntExtensions.swift in Sources */,

@@ -19,6 +19,17 @@ enum GroceryFilter: Int {
     case all
     case pickedUp
     case notPickedUp
+    
+    var displayText: String {
+        switch self {
+        case .pickedUp:
+            return "Picked Up Items"
+        case .notPickedUp:
+            return "Items Not Picked Up"
+        default:
+            return "All Items"
+        }
+    }
 }
 
 class GroceryList {

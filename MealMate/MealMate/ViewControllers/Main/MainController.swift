@@ -56,7 +56,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     private func setupNavBar() {
-        self.title = "Groceries"
+        self.navigationItem.setTitle(title: "Groceries", subtitle: "(\(curFilter.displayText))")
         
         let filterButton = UIButton(type: .custom)
         filterButton.addTarget(self, action: #selector(filterTapped(_:)), for: .touchUpInside)
@@ -108,9 +108,7 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func shareTapped(_ sender: AnyObject) {
-        let items = [groceryList.generateShareText(filter: curFilter)]
-        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        present(ac, animated: true)
+        promptForShare()
     }
     
     // MARK: - Helpers
@@ -161,6 +159,25 @@ class MainController: BaseViewController, UITableViewDataSource, UITableViewDele
         DispatchQueue.main.async {
             self.allowsReordering = self.curFilter == .all
             self.groceryTable.reloadData()
+        }
+    }
+    
+    private func promptForShare() {
+        let alert = UIAlertController(title: "Share \(curFilter.displayText)", message: "Are you sure you would like to share \(curFilter.displayText)?", preferredStyle: .alert)
+        let shareAction = UIAlertAction(title: "Share", style: .default) { action in
+            self.displayShareSheet()
+        }
+        alert.addAction(shareAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
+    }
+    
+    private func displayShareSheet() {
+        DispatchQueue.main.async {
+            let items = [self.groceryList.generateShareText(filter: self.curFilter)]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self.present(ac, animated: true)
         }
     }
     
